@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Casko Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Navigation Section -->
+    <nav>
+        <ul>
+			<li><a href="index.html" aria-label="Go to Home Page">Home</a></li>
+            <li><a href="resume.html">Résumé</a></li>
+            <li><a href="cover-letter.html">Cover Letter</a></li>
+            <li><a href="career-goals.html">Career Goals</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Header Section -->
+    <header>
+        <h1>Keith Casko's Portfolio</h1>
+    </header>
+    
+    <!-- Main Section -->
+    <main>
+        <section>
+            <h2>Welcome to My Portfolio</h2>
+            <p>Welcome to my professional portfolio. Here, you'll find information about my skills, projects, and career journey. I am currently transitioning from a 20+ year career in baking to software engineering, and I'm eager to share my progress with you.</p>
+        </section>
+        <section>
+            <h3>About Me</h3>
+            <p>My name is Keith Casko. I have experience in IT troubleshooting, system administration, and software development. I am currently learning Python and focusing on hands-on projects like setting up Active Directory on Windows Server 2022.</p>
+        </section>
+    </main>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> Keith Casko</p>
+        <p><a href="mailto:keith.casko@gmail.com">Email me</a></p>
+    </footer>
+    
+    <!-- JavaScript to populate current year -->
+    <script>
+        const currentYear = new Date().getFullYear();
+        document.getElementById('current-year').textContent = currentYear;
+        console.log("Portfolio loaded");
+    </script>
+</body>
+</html>

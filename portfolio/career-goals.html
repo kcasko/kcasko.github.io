@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Casko's Career Goals</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<nav>
+            <ul>
+				<li><a href="index.html" aria-label="Go to Home Page">Home</a></li>
+                <li><a href="resume.html">Résumé</a></li>
+                <li><a href="cover-letter.html">Cover Letter</a></li>
+                <li><a href="career-goals.html">Career Goals</a></li>
+            </ul>
+        </nav>
+		
+    <!-- Header Section -->
+    <header>
+        <h1>Keith Casko's Career Goals</h1>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <!-- Career Goals Article -->
+        <section>
+		<h2>My Career Goals & Learning Plan</h2>
+            <article>
+                <h2>Career Goals</h2>
+                <p>My long-term goal is to become a skilled software engineer, focusing on web development and cybersecurity. I plan to build expertise in software development practices, contribute to open-source projects, and eventually work with a team that focuses on building innovative and secure technologies.</p>
+            </article>
+
+            <!-- Learning Plan -->
+            <article>
+                <h3>My Learning Plan</h3>
+                <ul>
+                    <li>Master Python and JavaScript</li>
+                    <li>Gain expertise in web development frameworks</li>
+                    <li>Complete a full-stack web development course</li>
+                    <li>Continue contributing to personal and open-source projects</li>
+                </ul>
+            </article>
+
+            <!-- Image Section -->
+            <article class="career-image-container">
+				<h3>My Career Path Image</h3>
+				<img src="images/security.jpg" alt="A visual representation of career goals" class="career-image">
+			</article>
+
+
+	    <!-- Multimedia Section -->
+	    <article class="multimedia-container">
+    	    	<h3>Listen to My Career Goals</h3>
+    		<audio controls>
+        		<source src="media/career_goals_audio.mp3" type="audio/mp3">
+        		Your browser does not support the audio element.
+    		</audio>
+	</article>
+
+<article class="multimedia-container">
+    <h3>Watch My Career Goals Video</h3>
+    <video controls>
+        <source src="media/career_goals_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</article>
+
+
+             <!-- Contact Form Section -->
+    <article class="form-container">
+		<h3>Contact Me</h3>
+		<form action="https://wp.zybooks.com/form-viewer.php" method="post">
+			<label for="first_name">First Name</label>
+			<input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+
+			<label for="last_name">Last Name</label>
+			<input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+
+			<label for="company_name">Company Name</label>
+			<input type="text" id="company_name" name="company_name" placeholder="Company Name">
+
+			<label for="email">Email Address</label>
+			<input type="email" id="email" name="email" placeholder="Email Address" required>
+
+			<label for="phone">Phone Number</label>
+			<input type="tel" id="phone" name="phone" placeholder="Phone Number">
+
+			<label for="message">Message</label>
+			<textarea id="message" name="message" placeholder="Message" rows="4" required></textarea>
+
+			<label>Best Contact Time</label>
+			<div class="contact-time-options">
+				<input type="radio" id="am" name="best_contact_time" value="a.m." required> 
+				<label for="am">A.M.</label>
+
+				<input type="radio" id="pm" name="best_contact_time" value="p.m."> 
+				<label for="pm">P.M.</label>
+
+				<input type="radio" id="anytime" name="best_contact_time" value="anytime"> 
+				<label for="anytime">Anytime</label>
+			</div>
+
+			<label for="contact_method">Preferred Contact Method</label>
+			<select id="contact_method" name="contact_method">
+				<option value="phone">Phone</option>
+				<option value="email">Email</option>
+				<option value="text">Text</option>
+			</select>
+
+        <button type="submit">Submit</button>
+    </form>
+</article>
+
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; <span id="current-date"></span> Keith Casko</p>
+    </footer>
+
+    <!-- JavaScript to populate the current date -->
+    <script>
+        document.getElementById('current-date').textContent = new Date().getFullYear();
+        console.log("Career Goals loaded");
+    </script>
+</body>
+</html>

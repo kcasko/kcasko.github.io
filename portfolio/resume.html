@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Casko's Resume</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<!-- Navigation Section -->
+    <nav>
+        <ul>
+            <li><a href="index.html" aria-label="Go to Home Page">Home</a></li>
+            <li><a href="resume.html">Résumé</a></li>
+            <li><a href="cover-letter.html">Cover Letter</a></li>
+            <li><a href="career-goals.html">Career Goals</a></li>
+        </ul>
+    </nav>
+	
+	<!-- Header Section -->
+    <header>
+        <h1>Keith Casko</h1>
+        <p><em>Aspiring Software Engineer</em></p>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <!-- Professional Summary Section -->
+        <section id="summary">
+            <h2>Professional Summary</h2>
+            <article>
+				<h3>Overview</h3>
+                <p>Aspiring Software Engineer with a strong foundation in <strong>Python</strong>, system administration, and IT troubleshooting. Transitioning from a 20+ year career in baking, leveraging problem-solving, process optimization, and analytical thinking to excel in technology.</p>
+                <p>Passionate about software development, networking, and cybersecurity, actively building expertise through home lab projects, programming, and system administration.</p>
+                <br>
+                <hr>
+            </article>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <article>
+				<h3>Overview of Skills</h3>
+                <ul>
+                    <li><strong>Programming:</strong> Python (beginner), Bash scripting</li>
+                    <li><strong>Systems & Networking:</strong> Windows Server 2022, Active Directory, Linux (Ubuntu, Kali)</li>
+                    <li><strong>IT Infrastructure:</strong> Virtualization, Network Setup, Troubleshooting</li>
+                    <li><strong>Tools & Technologies:</strong> Git, VS Code</li>
+                </ul>
+                <span>Currently expanding knowledge in: JavaScript, HTML5, CSS3</span>
+            </article>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <article>
+                <h3>Professional History</h3>
+                <table>
+                    <caption>Employment History</caption>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Freelance IT Support</td>
+                            <td>Self-Employed</td>
+                            <td>Kalamazoo, MI</td>
+                            <td>Aug. 2008 - Present</td>
+                        </tr>
+                        <tr>
+                            <td>Full-Time Baker</td>
+                            <td>Costco</td>
+                            <td>Kalamazoo, MI</td>
+                            <td>Jun. 2015 - Present</td>
+                        </tr>
+                        <tr>
+                            <td>Baker</td>
+                            <td>Shop-N-Save</td>
+                            <td>Greensburg, PA</td>
+                            <td>May 2010 - May 2015</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+        <!-- Career Objective Section -->
+        <section id="career-goals">
+            <h3>Career Objective</h3>
+            <article>
+				<h4>Objective Statement</h4>
+                <p>I aim to combine my problem-solving abilities from a long career in baking with my growing software engineering skills to contribute to meaningful projects in the tech industry.</p>
+                <div>
+                    Contact me at: <a href="mailto:keith.casko@gmail.com">keith.casko@gmail.com</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; <span id="current-year"></span> Keith Casko</p>
+        <div id="current-date-container"></div>
+    </footer>
+
+    <!-- JavaScript to populate current date and log to console -->
+    <script>
+        // Set the current year in the copyright
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Create and populate the current date div
+        document.getElementById('current-date-container').innerHTML = `<strong>Current Date:</strong> ${new Date().toLocaleDateString()}`;
+        
+        // Write to console
+        console.log("Résumé loaded successfully");
+        console.log("Page accessed on: " + new Date().toLocaleString());
+    </script>
+</body>
+</html>
