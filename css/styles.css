@@ -11,6 +11,10 @@ body {
     overflow: hidden; /* Prevents scrolling */
 }
 
+h1 {
+    margin-top: 50px; /* Adds space at the top */
+}
+
 img {
     max-width: 80%;  /* Makes the images responsive */
     max-height: 300px; /* Limits the height to prevent scrolling */
