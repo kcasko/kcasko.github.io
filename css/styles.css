@@ -8,11 +8,12 @@ body {
     height: 100vh;
     text-align: center;
     margin: 0;
+    overflow: hidden; /* Prevents scrolling */
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    max-width: 80%;  /* Makes the images responsive */
+    max-height: 300px; /* Limits the height to prevent scrolling */
     display: block;
     margin: 20px auto;
 }
