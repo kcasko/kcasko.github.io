@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CHANGED: Updated Title -->
     <title>TaurusTech - Guestbook</title>
     <link rel="stylesheet" href="css/styles.css">
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -23,13 +22,12 @@
 
         <nav>
             <ul>
-                <!-- Ensure Home link goes to index.html or / -->
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li> <!-- Update later if you create about.html -->
+                <li><a href="/">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
                  <!-- This page IS projects, so link points here -->
                 <li><a href="projects.html">PROJECTS (WGU)</a></li>
-                <li><a href="homelab.html">BLOG/NOTES</a></li> <!-- Update later -->
-                <li><a href="guestbook.html">GUESTBOOK</a></li> <!-- Update later -->
+                <li><a href="homelab.html">BLOG/NOTES</a></li>
+                <li><a href="guestbook.html">GUESTBOOK</a></li>
             </ul>
         </nav>
 
@@ -45,7 +43,6 @@
 <p>Leave a message! Entries are added manually after review.</p>
 
 <!-- === The Guestbook Form === -->
-<!-- Replace YOUR_UNIQUE_CODE with the code from Formspree -->
 <form action="https://formspree.io/f/xkgjqqke" method="POST" class="guestbook-form">
     <div class="form-group">
         <label for="name">Name:</label>
@@ -55,7 +52,6 @@
         <label for="message">Message:</label>
         <textarea id="message" name="message" required rows="5" cols="40"></textarea>
     </div>
-    <!-- Optional: Add a simple honeypot for spam -->
     <input type="text" name="_gotcha" style="display:none">
 
     <div class="form-group">
