@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CHANGED: Updated Title -->
+    <title>TaurusTech - Home Lab Log</title>
+    <link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>
+                <a href="/"> <!-- Link back to home -->
+                    <img src="images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
+                </a>
+            </h1>
+            <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="projects.html">PROJECTS (WGU)</a></li>
+                <!-- This IS the Blog/Homelab page -->
+                <li><a href="homelab.html">HOME LAB LOG</a></li>
+                <li><a href="guestbook.html">GUESTBOOK</a></li>
+            </ul>
+        </nav>
+
+        <hr class="fancy-hr">
+
+        <!-- ======================================= -->
+        <!-- == MAIN CONTENT FOR HOME LAB PAGE    == -->
+        <!-- ======================================= -->
+        <main>
+            <h2>Home Lab Log :: The Digital Playground</h2>
+
+            <p>Welcome to the nerve center of TaurusTech! This page documents my ongoing home lab setup. It's my space for hands-on learning, experimentation, breaking things, and (hopefully) fixing them. This ties directly into my WGU Software Engineering studies and my goal of moving into cybersecurity.</p>
+            <p>Consider this a living document tracking hardware, software, configurations, and the inevitable troubleshooting adventures.</p>
+
+            <hr class="fancy-hr">
+
+            <h3>Core Hardware</h3>
+            <div class="lab-section">
+                <h4>Lenovo Ideapad 1</h4>
+                <ul>
+                    <li><strong>Specs:</strong> Intel Celeron N4500 (2 cores), 20GB RAM</li>
+                    <li><strong>Purpose:</strong> Main daily driver, Dual-boot Windows 11 Pro / Ubuntu. Initial VirtualBox host.</li>
+                    <li><strong>Status:</strong> In Use</li>
+                    <li><strong>Acquired:</strong> 03-14-2025</li>
+                </ul>
+
+                <h4>Lenovo T430</h4>
+                <ul>
+                    <li><strong>Specs:</strong> Core i5 3320M @ 2.6 GHz, 8 GB RAM</li>
+                    <li><strong>Purpose:</strong> Dedicated Proxmox Virtualization Host</li>
+                    <li><strong>Status:</strong> In Use</li>
+                    <li><strong>Acquired:</strong> 03-28-2025</li>
+                </ul>
+            </div>
+
+            <hr class="fancy-hr">
+
+            <h3>Operating System Landscape</h3>
+            <div class="lab-section">
+                <h4>Physical Installs</h4>
+                <ul>
+                    <li><strong>Windows 11 Pro:</strong> Primary OS on Ideapad 1 (Dual-Boot). Used for daily tasks.</li>
+                    <li><strong>Ubuntu Desktop:</strong> Secondary OS on Ideapad 1 (Dual-Boot). Used for Linux experiments, initial server management.</li>
+                    <li><strong>Proxmox VE:</strong> Bare-metal install on Lenovo T430. Main virtualization platform. Includes KDE Desktop Environment.</li>
+                </ul>
+                <h4>Current Virtual Machines (Hosted on Proxmox T430)</h4>
+                 <ul>
+                    <li><strong>Windows Server 2022 Standard:</strong> Main platform for Active Directory, DNS, DHCP practice.</li>
+                    <li><strong>Kali Linux:</strong> Security testing, penetration testing tools, network analysis.</li>
+                    <li><strong>Windows 11 Pro (VM):</strong> Client machine for joining the AD domain (`k-tech.local`), testing GPOs.</li>
+                    <li><strong>Ubuntu Server (Planned):</strong> For hosting test web services, Docker containers, etc.</li>
+                </ul>
+                 <!-- Note: Mentioning the older VirtualBox setup could go here if desired -->
+                 <!-- <p><em>Previously, some VMs (Server 2022, Kali) were hosted using VirtualBox on the Ideapad 1.</em></p> -->
+            </div>
+
+             <hr class="fancy-hr">
+
+            <h3>Key Services & Roles Under Development</h3>
+            <div class="lab-section">
+                <ul>
+                    <li><strong>Active Directory Domain Services (AD DS):</strong>
+                        <ul>
+                            <li><strong>Server:</strong> Windows Server 2022 (VM on Proxmox)</li>
+                            <li><strong>Domain Name:</strong> `k-tech.local` (Internal)</li>
+                            <li><strong>Status:</strong> In Progress. Setting up Domain Controller, users, groups, OUs, Group Policies.</li>
+                        </ul>
+                    </li>
+                    <li><strong>DNS / DHCP:</strong>
+                         <ul>
+                            <li><strong>Server:</strong> Windows Server 2022 (VM on Proxmox)</li>
+                            <li><strong>Status:</strong> Configuration in progress alongside AD setup.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Web Server (Test):</strong>
+                        <ul>
+                            <li><strong>Server:</strong> Ubuntu (Physical dual-boot for now, planned VM on Proxmox)</li>
+                            <li><strong>Software:</strong> Apache</li>
+                            <li><strong>Status:</strong> Basic setup running on Ubuntu physical install.</li>
+                        </ul>
+                     </li>
+                     <li><strong>SSH Access:</strong>
+                        <ul>
+                            <li><strong>Server:</strong> Proxmox Host, Ubuntu Installs</li>
+                            <li><strong>Status:</strong> Enabled for remote management via terminal.</li>
+                        </ul>
+                     </li>
+                </ul>
+            </div>
+
+            <hr class="fancy-hr">
+
+             <h3>Networking Configuration Notes</h3>
+             <div class="lab-section">
+                <ul>
+                    <li><strong>IP Scheme:</strong> Planning static IPs for servers (Proxmox host, Win Server DC, Ubuntu Server VM) and DHCP for client VMs / devices via Windows Server DHCP role.</li>
+                    <li><strong>Firewalls:</strong> Using Windows Defender Firewall on Server/Clients, UFW on Ubuntu, Proxmox built-in firewall. Configuring rules as needed (e.g., RDP, SSH, HTTP/S).</li>
+                    <li><strong>Proxmox Networking:</strong> Configured web UI access. Successfully troubleshooting Wi-Fi on host OS. VMs use bridged networking (vmbr0).</li>
+                </ul>
+             </div>
+
+             <hr class="fancy-hr">
+
+             <h3>Virtualization Environment: Proxmox Focus</h3>
+             <div class="lab-section">
+                <h4>Host: Lenovo T430</h4>
+                <ul>
+                    <li><strong>Platform:</strong> Proxmox VE (latest) with KDE Desktop</li>
+                    <li><strong>Management:</strong> Via Web UI and SSH.</li>
+                </ul>
+                <h4>Key VM Configurations & Tasks:</h4>
+                <ul>
+                    <li><strong>Windows Server 2022:</strong> 4GB RAM, 2 Cores, 50GB Disk. Primary focus: AD DS, DNS, DHCP setup.</li>
+                    <li><strong>Kali Linux:</strong> 2GB RAM, 1 Core, 30GB Disk. Used for security testing against lab environment.</li>
+                    <li><strong>Windows 11 Pro Client:</strong> Successfully joined to `k-tech.local` domain. Testing GPO application.</li>
+                </ul>
+                <p><em>Using snapshots heavily before major configuration changes or tests. Exploring Proxmox storage options (currently using local LVM).</em></p>
+             </div>
+
+            <hr class="fancy-hr">
+
+            <h3>Progress Logs & Troubleshooting Notes</h3>
+            <div class="lab-section">
+                <ul>
+                    <li><strong>[Ongoing] AD DS Setup:</strong> Initial challenges with DNS resolution during domain setup. Required careful verification of server IP config and DNS forwarders. Still working through fine-tuning Group Policy application.</li>
+                    <li><strong>[Resolved] Proxmox Host Networking:</strong> Initial trouble getting Wi-Fi stable after Proxmox install with KDE; resolved via Network Manager configuration.</li>
+                    <li><strong>[Ongoing] VM Connectivity:</strong> Ensuring reliable RDP access to Windows Server from other machines. SSH access to Linux systems working well.</li>
+                    <li><strong>[Planned] Security Testing:</strong> Will use Kali VM to perform basic network scans and vulnerability checks within the lab environment once core services are stable.</li>
+                </ul>
+            </div>
+
+            <hr class="fancy-hr">
+
+             <h3>Learning & Next Steps</h3>
+             <div class="lab-section">
+                <p>This lab is constantly evolving as I learn. Key takeaways so far involve the critical interplay between AD, DNS, and DHCP, and the importance of methodical troubleshooting.</p>
+                <h4>Immediate Goals:</h4>
+                <ul>
+                    <li>Fully configure DHCP scope on Windows Server 2022.</li>
+                    <li>Create standard user accounts and test GPO restrictions (e.g., password policies, software restrictions).</li>
+                    <li>Deploy Ubuntu Server VM on Proxmox and experiment with Docker.</li>
+                    <li>Explore Proxmox containerization (LXC).</li>
+                    <li>Begin basic security scans using Kali against the Windows Server VM.</li>
+                 </ul>
+                 <!-- Add links to resources if you have them -->
+                 <!-- <p><strong>Helpful Resources:</strong></p>
+                 <ul>
+                    <li><a href="#" target="_blank">Windows Server AD Setup Guide</a></li>
+                    <li><a href="#" target="_blank">Proxmox Documentation</a></li>
+                 </ul> -->
+             </div>
+
+        </main>
+        <!-- ======================================= -->
+        <!-- == END OF MAIN CONTENT               == -->
+        <!-- ======================================= -->
+
+
+        <hr class="fancy-hr"> <!-- Footer separator -->
+
+        <footer>
+            <!-- Keep the footer the same -->
+            <p>Last Updated: <span id="last-updated-date"></span></p> <!-- This will reflect the last save date of THIS file -->
+            <p>~ TaurusTech ~</p>
+            <div class="hit-counter">
+				<p>You are visitor
+                   <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
+                </p>
+			</div>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Keep the JavaScript for last updated date -->
+    <script>
+        const lastUpdatedElement = document.getElementById('last-updated-date');
+        if (document.lastModified && lastUpdatedElement) {
+            const lastModifiedDate = new Date(document.lastModified);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
+            lastUpdatedElement.textContent = formattedDate;
+        } else if (lastUpdatedElement) {
+            lastUpdatedElement.textContent = "Date unavailable";
+        }
+    </script>
+
+</body>
+</html>
