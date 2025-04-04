@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CHANGED: Updated Title -->
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="css/styles.css">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>
+                <a href="/"> <!-- Link back to home -->
+                    <img src="images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
+                </a>
+            </h1>
+            <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
+        </header>
+
+        <nav>
+            <ul>
+                <!-- Ensure Home link goes to index.html or / -->
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#">ABOUT</a></li> <!-- Update later if you create about.html -->
+                 <!-- This page IS projects, so link points here -->
+                <li><a href="projects.html">PROJECTS (WGU)</a></li>
+                <li><a href="#">BLOG/NOTES</a></li> <!-- Update later -->
+                <li><a href="guestbook.html">GUESTBOOK</a></li> <!-- Update later -->
+            </ul>
+        </nav>
+
+        <hr class="fancy-hr">
+
+        <!-- =========================================== -->
+        <!-- == MODIFIED MAIN CONTENT FOR PROJECTS PAGE == -->
+        <!-- =========================================== -->
+        <main>
+
+            <!-- Inside <main> of guestbook.html -->
+<h2>Guestbook</h2>
+<p>Leave a message! Entries are added manually after review.</p>
+
+<!-- === The Guestbook Form === -->
+<!-- Replace YOUR_UNIQUE_CODE with the code from Formspree -->
+<form action="https://formspree.io/f/xkgjqqke" method="POST" class="guestbook-form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required size="30">
+    </div>
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required rows="5" cols="40"></textarea>
+    </div>
+    <!-- Optional: Add a simple honeypot for spam -->
+    <input type="text" name="_gotcha" style="display:none">
+
+    <div class="form-group">
+        <button type="submit" class="retro-button">Sign Guestbook</button>
+    </div>
+</form>
+
+<hr class="fancy-hr"> <!-- Separator -->
+
+<!-- === Display Area for Entries (MANUALLY UPDATED) === -->
+<h3>Entries:</h3>
+
+<div class="guestbook-entry">
+    <p><strong>Name:</strong> Jane Doe<br>
+       <strong>Date:</strong> October 27, 2023<br>
+       <strong>Message:</strong> Love the retro vibe of the site! Keep it up!</p>
+</div>
+
+<div class="guestbook-entry">
+    <p><strong>Name:</strong> RetroFan<br>
+       <strong>Date:</strong> October 26, 2023<br>
+       <strong>Message:</strong> Takes me back! Nice work.</p>
+</div>
+
+<!-- == Add new entries above this line when you update == -->
+
+        </main>
+        <!-- =========================================== -->
+        <!-- == END OF MODIFIED MAIN CONTENT          == -->
+        <!-- =========================================== -->
+
+
+        <hr class="fancy-hr"> <!-- Footer separator -->
+
+        <footer>
+            <!-- Keep the footer the same -->
+            <p>Last Updated: <span id="last-updated-date"></span></p>
+            <p>~ TaurusTech ~</p>
+            <div class="hit-counter">
+				<p>You are visitor
+                   <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
+                </p>
+			</div>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Keep the JavaScript for last updated date -->
+    <script>
+        const lastUpdatedElement = document.getElementById('last-updated-date');
+        if (document.lastModified && lastUpdatedElement) {
+            const lastModifiedDate = new Date(document.lastModified);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
+            lastUpdatedElement.textContent = formattedDate;
+        } else if (lastUpdatedElement) {
+            lastUpdatedElement.textContent = "Date unavailable";
+        }
+    </script>
+
+</body>
+</html>

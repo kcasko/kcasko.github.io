@@ -1,25 +1,165 @@
+/* --- Basic Reset & Body --- */
 body {
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Full screen height */
-    text-align: center;
+    background-color: #000000;
+    font-family: "Times New Roman", serif;
+    color: #DDDDDD;
     margin: 0;
-    padding-top: 5vh; /* Adjust top space without causing scrolling */
-    overflow: hidden; /* Prevents scrolling */
+    padding: 0;
 }
 
-h1 {
-    color: red;
-    margin-bottom: 20px; /* Space between the header and the images */
-}
-
-img {
-    max-width: 80%;  /* Makes the images responsive */
-    max-height: 300px; /* Limits the height to prevent scrolling */
-    display: block;
+/* --- Container --- */
+.container {
+    max-width: 800px;
     margin: 20px auto;
+    border: 2px solid #888888;
+    padding: 15px;
+    box-shadow: 5px 5px 0px #444444;
+}
+
+/* --- Header --- */
+header {
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 2px dashed #888888;
+    padding-bottom: 10px;
+}
+
+header h1 {
+    margin: 0;
+	line-height:1;
+}
+
+#logo {
+	max-height: 220px; /* Adjust as needed */
+	width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tagline {
+    font-family: "Courier New", monospace;
+    font-size: 0.9em;
+    color: #00FF00; /* Bright Green */
+    margin-top: 5px;
+}
+
+/* --- Navigation --- */
+nav ul { list-style: none; padding: 0; text-align: center; margin: 15px 0; }
+nav li { display: inline-block; margin: 0 10px; }
+nav a { text-decoration: underline; color: #00FFFF; /* Cyan */ font-weight: bold; font-family: Arial, sans-serif; }
+nav a:visited { color: #FF00FF; /* Magenta */ }
+nav a:hover { color: #FFFF00; /* Yellow */ text-decoration: none; }
+
+/* --- Horizontal Rules --- */
+hr.fancy-hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(221, 221, 221, 0), rgba(221, 221, 221, 0.75), rgba(221, 221, 221, 0)); margin: 20px 0; }
+
+/* --- Main Content --- */
+main { line-height: 1.6; }
+main h2 { color: #FFAAAA; /* Light Red/Pink */ font-family: Georgia, serif; }
+main h3 { color: #AAAAFF; /* Light Blue */ border-bottom: 1px solid #666666; padding-bottom: 3px; }
+
+/* --- Specific Retro Elements --- */
+.construction-zone {
+    border: 1px dashed #FF8C00; /* Orange dash still works */
+    padding: 10px;
+    margin: 20px 0;
+    text-align: center;
+    /* REMOVED background-color: #FFFFE0; */
+    /* Text color should now inherit from body (light grey) */
+    /* color: inherit; */ /* Not strictly needed, will inherit */
+}
+
+.construction-zone img {
+    max-width: 200px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
+
+.construction-zone p {
+    display: block;
+    vertical-align: middle;
+    margin: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif; /* Keep the font for fun */
+    font-size: 0.9em;
+    /* REMOVED explicit color: #000000; */
+    /* Let it inherit the body's light grey color */
+    /* Or set explicitly if you want a different bright color: */
+    /* color: #00FF00; */ /* Example: Use bright green like tagline */
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px dashed #888888;
+    font-size: 0.8em;
+}
+
+.hit-counter { margin-top: 10px; }
+.hit-counter img { vertical-align: middle; }
+
+ul li { color: inherit; }
+
+/* --- Guestbook Styles --- */
+.guestbook-form {
+    border: 1px dashed #888888; /* Dashed border */
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #111111; /* Slightly lighter black if needed */
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block; /* Labels on their own line */
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: #00FF00; /* Bright green labels */
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    background-color: #222222; /* Dark background for inputs */
+    color: #DDDDDD; /* Light text */
+    border: 1px solid #666666;
+    padding: 5px;
+    font-family: "Courier New", monospace; /* Monospace font */
+    width: 90%; /* Adjust width */
+    max-width: 400px; /* Max width */
+}
+
+.retro-button {
+    background-color: #C0C0C0; /* Classic grey */
+    color: #000000;
+    border: 2px outset #FFFFFF; /* 3D effect */
+    padding: 5px 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.retro-button:active {
+    border-style: inset;
+}
+
+/* Style the displayed entries */
+.guestbook-entry {
+    border-bottom: 1px dotted #666666;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.guestbook-entry p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.guestbook-entry strong {
+    color: #AAAAFF; /* Light blue for field names */
 }
