@@ -37,46 +37,35 @@
         <!-- == MODIFIED MAIN CONTENT FOR PROJECTS PAGE == -->
         <!-- =========================================== -->
         <main>
+            <h2>Guestbook</h2>
+            <p>Leave a message! New entries appear after approval.</p>
 
-            <!-- Inside <main> of guestbook.html -->
-<h2>Guestbook</h2>
-<p>Leave a message! Entries are added manually after review.</p>
+            <!-- === MODIFIED Guestbook Form === -->
+            <!-- Removed action and method, added id="guestbookForm" -->
+            <form id="guestbookForm" class="guestbook-form">
+                <div class="form-group">
+                    <label for="guestbookName">Name:</label>
+                    <!-- Added id -->
+                    <input type="text" id="guestbookName" name="name" required size="30" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="guestbookMessage">Message:</label>
+                     <!-- Added id -->
+                    <textarea id="guestbookMessage" name="message" required rows="5" cols="40" maxlength="500"></textarea>
+                </div>
+                <div id="formStatus" style="margin-bottom: 10px; color: #00FF00;"></div> <!-- For feedback -->
+                <div class="form-group">
+                    <button type="submit" class="retro-button">Sign Guestbook</button>
+                </div>
+            </form>
 
-<!-- === The Guestbook Form === -->
-<form action="https://formspree.io/f/xkgjqqke" method="POST" class="guestbook-form">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required size="30">
-    </div>
-    <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required rows="5" cols="40"></textarea>
-    </div>
-    <input type="text" name="_gotcha" style="display:none">
+            <hr class="fancy-hr">
 
-    <div class="form-group">
-        <button type="submit" class="retro-button">Sign Guestbook</button>
-    </div>
-</form>
-
-<hr class="fancy-hr"> <!-- Separator -->
-
-<!-- === Display Area for Entries (MANUALLY UPDATED) === -->
-<h3>Entries:</h3>
-
-<div class="guestbook-entry">
-    <p><strong>Name:</strong> Jane Doe<br>
-       <strong>Date:</strong> October 27, 2023<br>
-       <strong>Message:</strong> Love the retro vibe of the site! Keep it up!</p>
-</div>
-
-<div class="guestbook-entry">
-    <p><strong>Name:</strong> RetroFan<br>
-       <strong>Date:</strong> October 26, 2023<br>
-       <strong>Message:</strong> Takes me back! Nice work.</p>
-</div>
-
-<!-- == Add new entries above this line when you update == -->
+            <!-- === Display Area for Entries (Will be filled by JS) === -->
+            <h3>Entries:</h3>
+            <div id="guestbookEntriesDisplay">
+                <p>Loading entries...</p> <!-- Placeholder -->
+            </div>
 
         </main>
         <!-- =========================================== -->
@@ -98,6 +87,98 @@
         </footer>
 
     </div> <!-- /container -->
+	<!-- === Frontend JavaScript === -->
+    <script>
+        const guestbookForm = document.getElementById('guestbookForm');
+        const nameInput = document.getElementById('guestbookName');
+        const messageInput = document.getElementById('guestbookMessage');
+        const entriesDisplay = document.getElementById('guestbookEntriesDisplay');
+        const formStatus = document.getElementById('formStatus');
+
+        // --- Function to Fetch and Display Entries ---
+        async function fetchAndDisplayEntries() {
+            entriesDisplay.innerHTML = '<p>Loading entries...</p>'; // Show loading state
+            try {
+                const response = await fetch('/api/get-entries'); // Fetch from our CF function
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const entries = await response.json();
+
+                entriesDisplay.innerHTML = ''; // Clear loading/previous entries
+
+                if (entries.length === 0) {
+                    entriesDisplay.innerHTML = '<p>No entries yet. Be the first!</p>';
+                    return;
+                }
+
+                entries.forEach(entry => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'guestbook-entry'; // Use existing CSS class
+
+                    // Format the date nicely
+                    const date = new Date(entry.timestamp);
+                    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                    const formattedDate = date.toLocaleDateString('en-US', dateOptions);
+
+                    // Basic sanitization for display (should match function - NEEDS ROBUST SOLUTION)
+                    const safeName = entry.name.replace(/</g, "<").replace(/>/g, ">");
+                    const safeMessage = entry.message.replace(/</g, "<").replace(/>/g, ">");
+
+                    entryDiv.innerHTML = `
+                        <p><strong>Name:</strong> ${safeName}<br>
+                           <strong>Date:</strong> ${formattedDate}<br>
+                           <strong>Message:</strong> ${safeMessage}</p>
+                    `;
+                    entriesDisplay.appendChild(entryDiv);
+                });
+
+            } catch (error) {
+                console.error('Error fetching entries:', error);
+                entriesDisplay.innerHTML = '<p style="color: #FF0000;">Error loading entries. Please try refreshing.</p>';
+            }
+        }
+
+        // --- Function to Handle Form Submission ---
+        guestbookForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Stop default form submission
+            formStatus.textContent = 'Submitting...';
+            formStatus.style.color = '#FFFF00'; // Yellow
+
+            const formData = new FormData(guestbookForm);
+
+            try {
+                const response = await fetch('/api/submit-entry', {
+                    method: 'POST',
+                    body: formData, // Send form data directly
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    formStatus.textContent = result.message || 'Submitted for moderation!';
+                    formStatus.style.color = '#00FF00'; // Green
+                    nameInput.value = ''; // Clear form
+                    messageInput.value = '';
+                    // Optionally, refresh entries slightly later, but maybe not immediately
+                    // setTimeout(fetchAndDisplayEntries, 2000);
+                } else {
+                    throw new Error(result.message || 'Submission failed.');
+                }
+
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                formStatus.textContent = `Error: ${error.message}`;
+                formStatus.style.color = '#FF0000'; // Red
+            }
+        });
+
+        // --- Initial Load ---
+        // Fetch entries when the page loads
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayEntries);
+
+    </script>
+     <!-- ... rest of body ... -->
 
     <!-- Keep the JavaScript for last updated date -->
     <script>
