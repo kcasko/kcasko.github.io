@@ -4,7 +4,7 @@
 function sanitize(str) {
   if (!str) return '';
   str = str.toString();
-  // Very basic: replace HTML tags characters. Consider a library for real use.
+  // Replace < with < and > with >
   return str.replace(/</g, "<").replace(/>/g, ">");
 }
 

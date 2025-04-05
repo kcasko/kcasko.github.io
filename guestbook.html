@@ -123,7 +123,7 @@
 
                     // Basic sanitization for display (should match function - NEEDS ROBUST SOLUTION)
                     const safeName = entry.name.replace(/</g, "<").replace(/>/g, ">");
-                    const safeMessage = entry.message.replace(/</g, "<").replace(/>/g, ">");
+					const safeMessage = entry.message.replace(/</g, "<").replace(/>/g, ">");
 
                     entryDiv.innerHTML = `
                         <p><strong>Name:</strong> ${safeName}<br>
