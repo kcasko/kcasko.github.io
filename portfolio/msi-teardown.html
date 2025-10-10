@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MSI GE62 (MS-16J4) · Teardown & Upgrade</title>
+  <meta name="description" content="Diagnosis, teardown, repairs, and upgrades on an MSI GE62 (MS-16J4), with photos and step-by-step notes." />
+  <style>
+    :root{
+      --ink:#0f1221; --muted:#5d667a; --line:#e9ecf3;
+      --brand:#6b7cff; --bg:#f7f9ff; --card:#ffffff;
+    }
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;}
+    .wrap{max-width:1080px;margin:auto;padding:24px;}
+    header{padding:8px 0 18px;text-align:center}
+    h1{font-size:clamp(28px,3.2vw,40px);margin:0 0 8px}
+    h2{margin-top:36px;font-size:clamp(22px,2.6vw,28px)}
+    p,li{color:#1d2342}
+    .pill{display:inline-block;background:rgba(107,124,255,.1);color:#2b39aa;padding:6px 10px;border-radius:999px;border:1px solid rgba(107,124,255,.25);font-weight:600}
+    .lead{font-size:1.07rem;color:#20274a}
+
+    .hero{margin:0 0 20px;border-radius:18px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .hero img{width:100%;height:auto;display:block}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 0 rgba(3,8,28,.04);padding:20px;margin:18px 0}
+    .grid{display:grid;gap:16px}
+    .cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:880px){.cols-2,.cols-3{grid-template-columns:1fr}}
+
+    figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+    figure>img{display:block;width:100%;height:auto}
+    figcaption{font-size:.9rem;color:var(--muted);padding:10px 12px;border-top:1px solid var(--line)}
+
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+    th{background:#f3f5ff;color:#222}
+
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:#f0f2fb;border:1px solid #dfe3f5;padding:2px 6px;border-radius:6px}
+    .muted{color:var(--muted)}
+    .cta{display:inline-block;margin-top:6px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;text-decoration:none}
+	section.card + section.card {
+  margin-top: 40px;
+}
+#touchpad-speaker-fix h2 {
+  color: var(--brand);
+  font-size: clamp(24px, 2.8vw, 32px);
+}
+.hero img,
+#touchpad-speaker-fix img {
+  max-width: 720px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="pill">Hardware · Teardown · Repair</span>
+      <h1>MSI GE62 (MS-16J4) — Teardown & Upgrade</h1>
+      <div class="hero">
+        <img src="/images/projects/msi-ge62-teardown/msi-teardown-hero.webp" 
+				 alt="MSI GE62 RGB keyboard after repair" loading="eager">
+      </div>
+      <p class="lead">Full teardown, repair, and upgrade of an MSI GE62 Apache Pro. Replaced a damaged LCD and SteelSeries keyboard,
+  refreshed thermal paste, cleaned the cooling system, and resolved touchpad and speaker issues to return the laptop to
+  full working order.</p>
+    </header>
+
+    <section class="card">
+  <h2>System Specs — Before &amp; After</h2>
+  <div class="grid cols-2">
+    <div>
+      <h3 style="text-align:center;margin-bottom:8px;">Before</h3>
+      <ul>
+        <li><strong>CPU:</strong> Intel® Core™ i7-6700HQ</li>
+        <li><strong>GPU:</strong> NVIDIA® GeForce® GTX 970M (3 GB)</li>
+        <li><strong>RAM:</strong> 16 GB DDR4-2133 (2×8 GB)</li>
+        <li><strong>Storage:</strong> 128 GB NVMe + 1 TB HDD</li>
+        <li><strong>Display:</strong> 15.6″ LG Philips LP156WF6 (FHD IPS)</li>
+        <li><strong>Keyboard:</strong> SteelSeries backlit assembly (non-working)</li>
+        <li><strong>Wi-Fi:</strong> Intel Dual Band Wireless-AC 3165</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 style="text-align:center;margin-bottom:8px;">After</h3>
+      <ul>
+        <li><strong>CPU:</strong> Intel® Core™ i7-6700HQ (cleaned + repasted)</li>
+        <li><strong>GPU:</strong> NVIDIA® GeForce® GTX 970M (3 GB, repasted)</li>
+        <li><strong>RAM:</strong> 32 GB G.Skill Ripjaws DDR4-2666 (2×16 GB)</li>
+        <li><strong>Storage:</strong> 1 TB WD Black SN710 NVMe + 1 TB Crucial BX500 SSD</li>
+        <li><strong>Display:</strong> New FHD IPS Panel (LP156WF6 replacement)</li>
+        <li><strong>Keyboard:</strong> New SteelSeries backlit assembly</li>
+        <li><strong>Wi-Fi:</strong> Intel Dual Band Wireless-AC 3165 (re-seated)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <section class="grid cols-2">
+      <div class="card">
+        <h2>Goals</h2>
+        <ul>
+          <li>Restore a laptop with keyboard and LCD issues to full daily-use status.</li>
+          <li>Service thermals (clean, repaste) and verify overall stability.</li>
+          <li>Document the process for portfolio evidence of hands-on repair.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Tools & Parts</h2>
+        <ul>
+		  <li>32 GB G.Skill Ripjaws DDR4-2666 (2×16 GB)</li>
+          <li>1 TB WD Black SN710 NVMe</li>
+          <li>1 TB Crucial BX500 SSD</li>
+          <li>Precision driver kit, spudger set, soldering iron</li>
+          <li>Replacement keyboard (SteelSeries, V143422AK1)</li>
+          <li>LCD panel (compatible 30-pin eDP FHD)</li>
+          <li>Isopropyl alcohol, q-tips, microfiber cloth</li>
+          <li>Thermal paste (Arctic MX-6)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Before ⇢ After (Highlights)</h2>
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Before</th><th>After</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>LCD</td><td>Damaged/ghosting artifacts</td><td>New FHD IPS panel (clean output)</td></tr>
+          <tr><td>Keyboard</td><td>Dead keys/backlight issues</td><td>New SteelSeries unit, full function</td></tr>
+          <tr><td>Thermals</td><td>Dry paste; higher temps</td><td>Fresh paste; lower idle/load temps</td></tr>
+          <tr><td>OS</td><td>Windows 10 Home</td><td>Clean Windows 11 Pro setup</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Photo Log</h2>
+      <p class="muted">Below are key images from the teardown and rebuild process, showing each stage from disassembly to final testing.</p>
+      <div class="grid cols-3">
+	   <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-02.webp" alt="Damaged LCD showing artifacts before replacement" loading="lazy">
+          <figcaption>LCD artifacts captured prior to replacement.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-10.webp" alt="HWiNFO panel info on screen identifying LP156WF6" loading="lazy">
+          <figcaption>Panel identification (LP156WF6) verified in software.</figcaption>
+        </figure>
+		<figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-03.webp" alt="System fully disassembled on workbench including motherboard, cooler, keyboard" loading="lazy">
+          <figcaption>Full teardown on bench — board, cooler, keyboard, and drives.</figcaption>
+        </figure>
+		 <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-01.webp" alt="LCD assembly opened and panel removed" loading="lazy">
+          <figcaption>LCD assembly opened; bezel/frame removed for panel swap.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-18.webp" alt="2 x 8 GB DDR4-2133 MHz SO-DIMM removed from MSI GE62 laptop before upgrade" loading="lazy">
+          <figcaption>Original memory modules — 2 x 8 GB DDR4-2133 MHz SO-DIMM.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-13.webp" alt="Close-up of original NVMe SSD module" loading="lazy">
+          <figcaption>Original 128 GB NVMe SSD</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-17.webp" alt="Keyboard FFC connector area under protective film" loading="lazy">
+          <figcaption>Original 1 TB 7200 RPM 2.5-inch SATA III unit used as secondary storage</figcaption>
+        </figure>
+		 <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-23.webp" alt="MSI GE62 keyboard backplate reattached to upper chassis after keyboard repair." loading="lazy">
+          <figcaption>The keyboard backplate reattached to the upper chassis. The original plastic welds were carefully reflowed with a soldering iron to secure the mounting frame after servicing the keyboard assembly.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-31.webp" alt="MSI GE62 motherboard disassembled on workbench with WD Black SN710 NVMe SSD, G.Skill Ripjaws DDR4 RAM, and Crucial BX500 SSD ready for installation." loading="lazy">
+          <figcaption>Preparing the MSI GE62 for upgrades with new hardware components. The planned refresh included a 1 TB WD Black SN710 NVMe SSD, 32 GB of G.Skill Ripjaws DDR4 memory, and a 1 TB Crucial BX500 SATA SSD for expanded storage.</figcaption>
+        </figure>
+		<figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-30.webp" alt="Motherboard area and cable routing overview" loading="lazy">
+          <figcaption>Mainboard area — cable paths and shielding restored.</figcaption>
+        </figure>
+		<figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-37.webp" alt="Touchpad ribbon cable detached from MSI GE62 chassis during keyboard assembly removal." loading="lazy">
+          <figcaption>The touchpad ribbon cable disconnected from the chassis during disassembly. This flat flex cable links the touchpad to the motherboard through a ZIF connector and must be removed carefully to avoid tearing.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/msi-ge62-teardown/msi-teardown-28.webp" alt="Windows finishing setup after clean install" loading="lazy">
+          <figcaption>Clean OS install — device checks and drivers updated.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Challenges & Notes</h2>
+      <ul>
+         <li>Keyboard replacement required full top-case access; careful handling of the fragile FFC latch was essential.</li>
+         <li>LCD swap used a 30-pin eDP panel; cable routing and hinge alignment were verified during reassembly.</li>
+         <li>Touchpad was initially non-functional due to a missing ribbon cable that had been mistaken for a broken display part; reinstalled and restored full operation.</li>
+         <li>Speaker output was faint until the audio cable—previously trapped under the motherboard—was reconnected, restoring full stereo sound.</li>
+         <li>Repaste reduced temperatures noticeably under load and idle, while dust removal improved fan acoustics.</li>
+      </ul>
+    </section>
+	
+	<section class="card" id="touchpad-speaker-fix">
+  <h2>🖱️ The Touchpad That Almost Went to the Dump</h2>
+  <p class="muted"><strong>Project:</strong> MSI GE62 6QF — Touchpad &amp; Speaker Fix · <strong>Cost:</strong> $0 · <strong>Result:</strong> Fully working</p>
+
+  <p>This one’s equal parts success story and “what was I thinking?” moment. After a screen swap, the touchpad was totally dead—no response in Windows, nothing in Device Manager. I assumed hardware failure… until I realized the “leftover” flat cable I tossed was actually the touchpad ribbon.</p>
+
+  <p>Luckily the trash was fresh. I fished out the cable, reseated it in the ZIF connector, and the touchpad came back instantly. While I was in there, I found the speaker cable wedged under the motherboard and not plugged in—reconnected it and the audio returned to full strength.</p>
+
+  <ul>
+    <li>Double-check every connector before reassembly.</li>
+    <li>Bag/label small parts and flex cables during teardown.</li>
+    <li>There are no “extra” parts—if you have one, something’s unplugged 😅</li>
+  </ul>
+
+  <figure style="text-align:center;">
+  <img src="/images/projects/msi-ge62-teardown/msi-teardown-38.webp"
+       alt="MSI GE62 touchpad ribbon cable reinstalled in ZIF connector" loading="eager">
+  <figcaption style="text-align:center;max-width:90%;margin:0.5em auto 0;">
+    Touchpad ribbon back where it belongs; ZIF latch locked. Speakers also restored after reconnecting their cable.
+  </figcaption>
+</figure>
+</section>
+
+    <section class="card">
+  <h2>Outcome</h2>
+  <p>The system is now fully operational for day-to-day tasks and light gaming or lab work. This project reinforced experience in laptop diagnostics, complete teardown and rebuild, safe handling of FFC connectors, and component-level troubleshooting. The touchpad and speaker issues were resolved through careful inspection and reconnection of internal cables. Thermal servicing and a clean OS deployment further validated system stability and performance.</p>
+  <a class="cta" href="/projects.html">← Back to Projects</a>
+</section>
+ </div>
+</body>
+</html>
