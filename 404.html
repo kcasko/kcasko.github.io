@@ -1,121 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CHANGED: Updated Title for 404 -->
-    <title>404 Not Found - TaurusTech</title>
-    <link rel="stylesheet" href="/css/styles.css">
-	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <!-- Optional: Add specific styles for 404 page if needed -->
-    <style>
-        /* Simple blinking cursor effect */
-        .blinking-cursor {
-            font-weight: bold;
-            color: #00FF00; /* Bright Green */
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        .error-code {
-            font-family: "Courier New", monospace;
-            font-size: 1.5em;
-            color: #FF0000; /* Red */
-            margin-bottom: 15px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Not Found - TaurusTech</title>
+
+  <!-- Core + Retro styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/retro-effects.css" />
+
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+  <!-- Page-specific (kept for this page only) -->
+  <style>
+    .blinking-cursor {
+      font-weight: bold;
+      color: #00FF00;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      from, to { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .error-code {
+      font-family: "Courier New", monospace;
+      font-size: 1.5em;
+      color: #FF0000;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <header>
-            <h1>
-                <a href="/"> <!-- Link back to home -->
-                    <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
-                </a>
-            </h1>
-            <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
-        </header>
+    <header>
+      <h1>
+        <a href="/">
+          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
+        </a>
+      </h1>
+      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
+    </header>
 
-        <!-- Navigation remains the same for consistency -->
-        <nav>
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="/about.html">ABOUT</a></li>
-                <li><a href="/projects.html">PROJECTS</a></li>
-                <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
-                <li><a href="guestbook.html">GUESTBOOK</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation remains the same for consistency -->
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
+        <li><a href="/guestbook.html">GUESTBOOK</a></li>
+      </ul>
+    </nav>
 
-        <hr class="fancy-hr">
+    <hr class="fancy-hr" />
 
-        <!-- ======================================= -->
-        <!-- == MAIN CONTENT FOR 404 PAGE         == -->
-        <!-- ======================================= -->
-        <main>
-            <h2 class="error-code">ERROR 404 :: Resource Not Located</h2>
+    <main>
+      <h2 class="error-code">ERROR 404 :: Resource Not Located</h2>
 
-            <p>Hmm, seems the digital pathway you requested leads to a dead end or an empty sector.</p>
-            <p>The requested URL was not found on this server. That's all we know.<span class="blinking-cursor">_</span></p>
+      <p>Hmm, seems the digital pathway you requested leads to a dead end or an empty sector.</p>
+      <p>
+        The requested URL was not found on this server. That’s all we know.
+        <span class="blinking-cursor">_</span>
+      </p>
 
-            <p>Perhaps you mistyped the address, or maybe the link you followed was outdated?</p>
+      <p>Perhaps you mistyped the address, or maybe the link you followed was outdated?</p>
 
-            <p>Here are some options:</p>
-            <ul>
-                <li>Double-check the URL in your address bar.</li>
-                <li>Go back to the <a href="/">TaurusTech Homepage</a>.</li>
-                <li>Explore other sections:
-                    <ul>
-                        <li><a href="/about.html">About Me</a></li>
-                        <li><a href="/projects.html">Projects</a></li>
-                        <li><a href="/portfolio/homelab.html">Home Lab Log</a></li>
-                    </ul>
-                </li>
-            </ul>
+      <p>Here are some options:</p>
+      <ul>
+        <li>Double-check the URL in your address bar.</li>
+        <li>Go back to the <a href="/">TaurusTech Homepage</a>.</li>
+        <li>Explore other sections:
+          <ul>
+            <li><a href="/about.html">About Me</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/portfolio/homelab.html">Home Lab Log</a></li>
+          </ul>
+        </li>
+      </ul>
 
-            <!-- Optional: Add a fun retro graphic? -->
-            <!-- <img src="images/sad_computer.gif" alt="Sad computer icon"> -->
+      <!-- Optional retro graphic -->
+      <!-- <img src="/images/sad_computer.gif" alt="Sad computer icon"> -->
+    </main>
 
-        </main>
-        <!-- ======================================= -->
-        <!-- == END OF MAIN CONTENT               == -->
-        <!-- ======================================= -->
+    <hr class="fancy-hr" />
 
+    <footer>
+      <p>Last Updated: <span id="last-updated-date"></span></p>
+      <p>~ TaurusTech ~</p>
 
-        <hr class="fancy-hr"> <!-- Footer separator -->
+      <div class="hit-counter">
+        <p>
+          You are visitor
+          <span id="visitorCount" class="retro-counter">...</span>
+        </p>
+      </div>
 
-        <footer>
-            <!-- Keep the footer consistent -->
-            <p>Last Updated: <span id="last-updated-date">Loading...</span></p> <!-- It might not update if the file isn't changing -->
-            <p>~ TaurusTech ~</p>
-            <div class="hit-counter">
-				<p>You are visitor
-                   <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
-                </p>
-			</div>
-        </footer>
+      <!-- Retro Mode Toggle -->
+      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
+        Deactivate 90s Mode
+      </button>
 
-    </div> <!-- /container -->
+      <!-- JavaScript Modules -->
+      <script src="/js/hitcounter.js"></script>
+      <script src="/js/toggleRetro.js"></script>
+    </footer>
 
-    <!-- Keep the JavaScript for last updated date if you want -->
-    <script>
-        const lastUpdatedElement = document.getElementById('last-updated-date');
-        // On a 404, document.lastModified might be less meaningful
-        // or might reflect the 404 file's date, not the site's main update time.
-        // You could even remove this script from the 404 page if desired.
-        if (document.lastModified && lastUpdatedElement) {
-            const lastModifiedDate = new Date(document.lastModified);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
-            lastUpdatedElement.textContent = formattedDate;
-        } else if (lastUpdatedElement) {
-            lastUpdatedElement.textContent = "N/A"; // Or just leave the default Loading...
-        }
-    </script>
+  </div> <!-- /container -->
+
+  <!-- Last updated helper -->
+  <script>
+    const lastUpdatedElement = document.getElementById('last-updated-date');
+    if (document.lastModified && lastUpdatedElement) {
+      const lastModifiedDate = new Date(document.lastModified);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
+      lastUpdatedElement.textContent = formattedDate;
+    } else if (lastUpdatedElement) {
+      lastUpdatedElement.textContent = "N/A";
+    }
+  </script>
 
 </body>
 </html>

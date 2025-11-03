@@ -1,197 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaurusTech - Guestbook</title>
-    <link rel="stylesheet" href="/css/styles.css">
-	<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaurusTech - Guestbook</title>
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/retro-effects.css" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
 
-        <header>
-            <h1>
-                <a href="/"> <!-- Link back to home -->
-                    <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
-                </a>
-            </h1>
-            <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
-        </header>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <h1>
+        <a href="/">
+          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
+        </a>
+      </h1>
+      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
+    </header>
 
-        <nav>
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="/about.html">ABOUT</a></li>
-                 <!-- This page IS projects, so link points here -->
-                <li><a href="/projects.html">PROJECTS</a></li>
-                <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
-                <li><a href="/guestbook.html">GUESTBOOK</a></li>
-            </ul>
-        </nav>
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
+        <li><a href="/guestbook.html" class="active">GUESTBOOK</a></li>
+      </ul>
+    </nav>
 
-        <hr class="fancy-hr">
+    <hr class="fancy-hr" />
 
-        <!-- =========================================== -->
-        <!-- == MODIFIED MAIN CONTENT FOR PROJECTS PAGE == -->
-        <!-- =========================================== -->
-        <main>
-            <h2>Guestbook</h2>
-            <p>Leave a message! New entries appear after approval.</p>
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+      <h2>Guestbook</h2>
+      <p>Leave a message! New entries appear after approval.</p>
 
-            <!-- === MODIFIED Guestbook Form === -->
-            <!-- Removed action and method, added id="guestbookForm" -->
-            <form id="guestbookForm" class="guestbook-form">
-                <div class="form-group">
-                    <label for="guestbookName">Name:</label>
-                    <!-- Added id -->
-                    <input type="text" id="guestbookName" name="name" required size="30" maxlength="50">
-                </div>
-                <div class="form-group">
-                    <label for="guestbookMessage">Message:</label>
-                     <!-- Added id -->
-                    <textarea id="guestbookMessage" name="message" required rows="5" cols="40" maxlength="500"></textarea>
-                </div>
-                <div id="formStatus" style="margin-bottom: 10px; color: #00FF00;"></div> <!-- For feedback -->
-                <div class="form-group">
-                    <button type="submit" class="retro-button">Sign Guestbook</button>
-                </div>
-            </form>
+      <!-- === Guestbook Form === -->
+      <form id="guestbookForm" class="guestbook-form">
+        <div class="form-group">
+          <label for="guestbookName">Name:</label>
+          <input type="text" id="guestbookName" name="name" required size="30" maxlength="50" />
+        </div>
+        <div class="form-group">
+          <label for="guestbookMessage">Message:</label>
+          <textarea id="guestbookMessage" name="message" required rows="5" cols="40" maxlength="500"></textarea>
+        </div>
+        <div id="formStatus" style="margin-bottom: 10px; color: #00FF00;"></div>
+        <div class="form-group">
+          <button type="submit" class="retro-button">Sign Guestbook</button>
+        </div>
+      </form>
 
-            <hr class="fancy-hr">
+      <hr class="fancy-hr" />
 
-            <!-- === Display Area for Entries (Will be filled by JS) === -->
-            <h3>Entries:</h3>
-            <div id="guestbookEntriesDisplay">
-                <p>Loading entries...</p> <!-- Placeholder -->
-            </div>
+      <!-- === Entries Display === -->
+      <h3>Entries:</h3>
+      <div id="guestbookEntriesDisplay">
+        <p>Loading entries...</p>
+      </div>
+    </main>
 
-        </main>
-        <!-- =========================================== -->
-        <!-- == END OF MODIFIED MAIN CONTENT          == -->
-        <!-- =========================================== -->
+    <hr class="fancy-hr" />
 
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <p>Last Updated: <span id="last-updated-date"></span></p>
+      <p>~ TaurusTech ~</p>
 
-        <hr class="fancy-hr"> <!-- Footer separator -->
+      <div class="hit-counter">
+        <p>
+          You are visitor
+          <span id="visitorCount" class="retro-counter">...</span>
+        </p>
+      </div>
 
-        <footer>
-            <!-- Keep the footer the same -->
-            <p>Last Updated: <span id="last-updated-date"></span></p>
-            <p>~ TaurusTech ~</p>
-            <div class="hit-counter">
-				<p>You are visitor
-                   <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
-                </p>
-			</div>
-        </footer>
+      <!-- Retro Mode Toggle -->
+      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
+        Activate 90s Mode
+      </button>
 
-    </div> <!-- /container -->
-	<!-- === Frontend JavaScript === -->
-    <script>
-        const guestbookForm = document.getElementById('guestbookForm');
-        const nameInput = document.getElementById('guestbookName');
-        const messageInput = document.getElementById('guestbookMessage');
-        const entriesDisplay = document.getElementById('guestbookEntriesDisplay');
-        const formStatus = document.getElementById('formStatus');
+      <!-- JavaScript Modules -->
+      <script src="/js/hitcounter.js"></script>
+      <script src="/js/toggleRetro.js"></script>
+    </footer>
 
-        // --- Function to Fetch and Display Entries ---
-        async function fetchAndDisplayEntries() {
-            entriesDisplay.innerHTML = '<p>Loading entries...</p>'; // Show loading state
-            try {
-                const response = await fetch('/api/get-entries'); // Fetch from our CF function
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const entries = await response.json();
+  </div> <!-- /container -->
 
-                entriesDisplay.innerHTML = ''; // Clear loading/previous entries
+  <!-- ===== GUESTBOOK FUNCTIONALITY ===== -->
+  <script>
+    const guestbookForm = document.getElementById("guestbookForm");
+    const nameInput = document.getElementById("guestbookName");
+    const messageInput = document.getElementById("guestbookMessage");
+    const entriesDisplay = document.getElementById("guestbookEntriesDisplay");
+    const formStatus = document.getElementById("formStatus");
 
-                if (entries.length === 0) {
-                    entriesDisplay.innerHTML = '<p>No entries yet. Be the first!</p>';
-                    return;
-                }
+    async function fetchAndDisplayEntries() {
+      entriesDisplay.innerHTML = "<p>Loading entries...</p>";
+      try {
+        const response = await fetch("/api/get-entries");
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        const entries = await response.json();
 
-                entries.forEach(entry => {
-                    const entryDiv = document.createElement('div');
-                    entryDiv.className = 'guestbook-entry'; // Use existing CSS class
-
-                    // Format the date nicely
-                    const date = new Date(entry.timestamp);
-                    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                    const formattedDate = date.toLocaleDateString('en-US', dateOptions);
-
-                    // Basic sanitization for display (should match function - NEEDS ROBUST SOLUTION)
-                    const safeName = entry.name.replace(/</g, "<").replace(/>/g, ">");
-					const safeMessage = entry.message.replace(/</g, "<").replace(/>/g, ">");
-
-                    entryDiv.innerHTML = `
-                        <p><strong>Name:</strong> ${safeName}<br>
-                           <strong>Date:</strong> ${formattedDate}<br>
-                           <strong>Message:</strong> ${safeMessage}</p>
-                    `;
-                    entriesDisplay.appendChild(entryDiv);
-                });
-
-            } catch (error) {
-                console.error('Error fetching entries:', error);
-                entriesDisplay.innerHTML = '<p style="color: #FF0000;">Error loading entries. Please try refreshing.</p>';
-            }
+        entriesDisplay.innerHTML = "";
+        if (entries.length === 0) {
+          entriesDisplay.innerHTML = "<p>No entries yet. Be the first!</p>";
+          return;
         }
 
-        // --- Function to Handle Form Submission ---
-        guestbookForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Stop default form submission
-            formStatus.textContent = 'Submitting...';
-            formStatus.style.color = '#FFFF00'; // Yellow
-
-            const formData = new FormData(guestbookForm);
-
-            try {
-                const response = await fetch('/api/submit-entry', {
-                    method: 'POST',
-                    body: formData, // Send form data directly
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    formStatus.textContent = result.message || 'Submitted for moderation!';
-                    formStatus.style.color = '#00FF00'; // Green
-                    nameInput.value = ''; // Clear form
-                    messageInput.value = '';
-                    // Optionally, refresh entries slightly later, but maybe not immediately
-                    // setTimeout(fetchAndDisplayEntries, 2000);
-                } else {
-                    throw new Error(result.message || 'Submission failed.');
-                }
-
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                formStatus.textContent = `Error: ${error.message}`;
-                formStatus.style.color = '#FF0000'; // Red
-            }
+        entries.forEach(entry => {
+          const entryDiv = document.createElement("div");
+          entryDiv.className = "guestbook-entry";
+          const date = new Date(entry.timestamp);
+          const formattedDate = date.toLocaleString("en-US", {
+            year: "numeric", month: "long", day: "numeric",
+            hour: "2-digit", minute: "2-digit"
+          });
+          const safeName = entry.name.replace(/[<>]/g, "");
+          const safeMessage = entry.message.replace(/[<>]/g, "");
+          entryDiv.innerHTML = `
+            <p><strong>Name:</strong> ${safeName}<br>
+               <strong>Date:</strong> ${formattedDate}<br>
+               <strong>Message:</strong> ${safeMessage}</p>`;
+          entriesDisplay.appendChild(entryDiv);
         });
+      } catch (error) {
+        console.error("Error fetching entries:", error);
+        entriesDisplay.innerHTML = "<p style='color:#FF0000;'>Error loading entries. Please refresh.</p>";
+      }
+    }
 
-        // --- Initial Load ---
-        // Fetch entries when the page loads
-        document.addEventListener('DOMContentLoaded', fetchAndDisplayEntries);
+    guestbookForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      formStatus.textContent = "Submitting...";
+      formStatus.style.color = "#FFFF00";
 
-    </script>
-     <!-- ... rest of body ... -->
+      const formData = new FormData(guestbookForm);
+      try {
+        const response = await fetch("/api/submit-entry", { method: "POST", body: formData });
+        const result = await response.json();
+        if (result.success) {
+          formStatus.textContent = result.message || "Submitted for moderation!";
+          formStatus.style.color = "#00FF00";
+          nameInput.value = "";
+          messageInput.value = "";
+        } else throw new Error(result.message || "Submission failed.");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        formStatus.textContent = `Error: ${error.message}`;
+        formStatus.style.color = "#FF0000";
+      }
+    });
 
-    <!-- Keep the JavaScript for last updated date -->
-    <script>
-        const lastUpdatedElement = document.getElementById('last-updated-date');
-        if (document.lastModified && lastUpdatedElement) {
-            const lastModifiedDate = new Date(document.lastModified);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
-            lastUpdatedElement.textContent = formattedDate;
-        } else if (lastUpdatedElement) {
-            lastUpdatedElement.textContent = "Date unavailable";
-        }
-    </script>
+    document.addEventListener("DOMContentLoaded", fetchAndDisplayEntries);
+  </script>
+
+  <!-- ===== LAST UPDATED SCRIPT ===== -->
+  <script>
+    const lastUpdatedElement = document.getElementById("last-updated-date");
+    if (document.lastModified && lastUpdatedElement) {
+      const lastModifiedDate = new Date(document.lastModified);
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      const formattedDate = lastModifiedDate.toLocaleDateString("en-US", options);
+      lastUpdatedElement.textContent = formattedDate;
+    } else if (lastUpdatedElement) {
+      lastUpdatedElement.textContent = "Date unavailable";
+    }
+  </script>
 
 </body>
 </html>

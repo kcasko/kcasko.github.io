@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finishing What I Started - TaurusTech</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <!-- Core + Retro Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/retro-effects.css" />
+
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
   <div class="container">
 
+    <!-- ===== HEADER ===== -->
     <header>
       <h1>
         <a href="/">
-          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
+          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
         </a>
       </h1>
-      <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
+      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
     </header>
 
+    <!-- ===== NAVIGATION ===== -->
     <nav>
       <ul>
         <li><a href="/">HOME</a></li>
@@ -30,8 +36,9 @@
       </ul>
     </nav>
 
-    <hr class="fancy-hr">
+    <hr class="fancy-hr" />
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main>
       <article style="max-width: 720px; margin: 0 auto; padding: 2rem; font-family: 'Poppins', 'Quicksand', sans-serif; color: #ffffff; background-color: #0f0f10; line-height: 1.6;">
 
@@ -61,7 +68,7 @@
         </div>
 
         <p style="margin-top: 2rem; text-align: right; font-weight: 600; color: #a56cff;">
-          — Keith Casko<br>
+          — Keith Casko<br />
           <a href="https://taurustech.me" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #a56cff;">TaurusTech.me</a>
         </p>
 
@@ -72,20 +79,33 @@
       </article>
     </main>
 
-    <hr class="fancy-hr">
+    <hr class="fancy-hr" />
 
+    <!-- ===== FOOTER ===== -->
     <footer>
       <p>Last Updated: <span id="last-updated-date"></span></p>
       <p>~ TaurusTech ~</p>
+
       <div class="hit-counter">
-        <p>You are visitor
-          <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
+        <p>
+          You are visitor
+          <span id="visitorCount" class="retro-counter">...</span>
         </p>
       </div>
+
+      <!-- Retro Mode Toggle -->
+      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
+        Activate 90s Mode
+      </button>
+
+      <!-- JavaScript Modules -->
+      <script src="/js/hitcounter.js"></script>
+      <script src="/js/toggleRetro.js"></script>
     </footer>
 
   </div>
 
+  <!-- ===== LAST UPDATED SCRIPT ===== -->
   <script>
     const lastUpdatedElement = document.getElementById('last-updated-date');
     if (document.lastModified && lastUpdatedElement) {
