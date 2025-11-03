@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finishing What I Started - TaurusTech</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>
+        <a href="/">
+          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo">
+        </a>
+      </h1>
+      <p class="tagline">// Navigating the web since the 90s, coding in the 20s //</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
+        <li><a href="/guestbook.html">GUESTBOOK</a></li>
+      </ul>
+    </nav>
+
+    <hr class="fancy-hr">
+
+    <main>
+      <article style="max-width: 720px; margin: 0 auto; padding: 2rem; font-family: 'Poppins', 'Quicksand', sans-serif; color: #ffffff; background-color: #0f0f10; line-height: 1.6;">
+
+        <h2 style="color: #a56cff; font-size: 1.8rem; text-align: center; margin-bottom: 1.5rem;">🎥 Finishing What I Started</h2>
+
+        <p>I’ve always been good at starting things. The ideas come easy. What hasn’t come easy is finishing them. I’ll get halfway into something, lose momentum, and jump to the next project. This week, that changed.</p>
+
+        <p>I spent about seven hours making my Lime Connect “In the Limelight” video submission. It’s only a couple minutes long, but I put real work into every second. I recorded, edited, fixed audio, adjusted color, and built an intro and outro from scratch. Most of it was me learning CapCut as I went.</p>
+
+        <p>There were moments when it got frustrating. I trimmed too much, cut clips too short, and had to fix more mistakes than I expected. But I didn’t scrap it. I figured things out one problem at a time and kept going until it looked and sounded right.</p>
+
+        <p>It isn’t perfect, but it’s done. And that matters more than perfect ever will.</p>
+
+        <p>Finishing this reminded me that progress isn’t about being inspired all the time. It’s about staying focused long enough to actually complete something. Seeing this project through taught me more about persistence, patience, and problem-solving than any tutorial could.</p>
+
+        <p>This project means something to me. It’s proof that I can start something creative and take it all the way to the end. That’s a big deal for TaurusTech, and for me personally.</p>
+
+        <p>If you’re the kind of person who starts a lot of things but rarely finishes, pick one and close it out. You’ll learn more from finishing one project than from leaving ten halfway done.</p>
+
+        <!-- Video Embed -->
+        <div style="margin: 2rem 0; text-align: center;">
+          <iframe width="100%" height="405" style="max-width: 720px; border: none; border-radius: 12px;"
+            src="https://www.youtube.com/embed/z34wyIlcdUw"
+            title="Finishing What I Started - Lime Connect Submission"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+
+        <p style="margin-top: 2rem; text-align: right; font-weight: 600; color: #a56cff;">
+          — Keith Casko<br>
+          <a href="https://taurustech.me" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #a56cff;">TaurusTech.me</a>
+        </p>
+
+        <p style="text-align: center; margin-top: 2rem;">
+          <a href="/projects.html" style="color: #a56cff; font-weight: 600; text-decoration: none; border-bottom: 1px solid #a56cff;">← Back to Projects</a>
+        </p>
+
+      </article>
+    </main>
+
+    <hr class="fancy-hr">
+
+    <footer>
+      <p>Last Updated: <span id="last-updated-date"></span></p>
+      <p>~ TaurusTech ~</p>
+      <div class="hit-counter">
+        <p>You are visitor
+          <script type="text/javascript" src="https://counter.websiteout.com/js/13/5/0/1"></script>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const lastUpdatedElement = document.getElementById('last-updated-date');
+    if (document.lastModified && lastUpdatedElement) {
+      const lastModifiedDate = new Date(document.lastModified);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
+      lastUpdatedElement.textContent = formattedDate;
+    } else if (lastUpdatedElement) {
+      lastUpdatedElement.textContent = "Date unavailable";
+    }
+  </script>
+
+</body>
+</html>

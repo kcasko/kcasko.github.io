@@ -26,12 +26,12 @@ header {
 
 header h1 {
     margin: 0;
-	line-height:1;
+    line-height: 1;
 }
 
 #logo {
-	max-height: 220px; /* Adjust as needed */
-	width: auto;
+    max-height: 220px; /* Adjust as needed */
+    width: auto;
     display: inline-block;
     vertical-align: middle;
 }
@@ -44,33 +44,71 @@ header h1 {
 }
 
 /* --- Navigation --- */
-nav ul { list-style: none; padding: 0; text-align: center; margin: 15px 0; }
-nav li { display: inline-block; margin: 0 10px; }
-nav a { text-decoration: underline; color: #00FFFF; /* Cyan */ font-weight: bold; font-family: Arial, sans-serif; }
-nav a:visited { color: #FF00FF; /* Magenta */ }
-nav a:hover { color: #FFFF00; /* Yellow */ text-decoration: none; }
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 15px 0;
+}
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+nav a {
+    text-decoration: underline;
+    color: #00FFFF; /* Cyan */
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+nav a:visited {
+    color: #FF00FF; /* Magenta */
+}
+nav a:hover {
+    color: #FFFF00; /* Yellow */
+    text-decoration: none;
+}
+
+/* --- Mobile Navigation --- */
+@media (max-width: 600px) {
+    nav li {
+        display: block;
+        margin: 8px 0;
+    }
+}
 
 /* --- Horizontal Rules --- */
-hr.fancy-hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(221, 221, 221, 0), rgba(221, 221, 221, 0.75), rgba(221, 221, 221, 0)); margin: 20px 0; }
+hr.fancy-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(221, 221, 221, 0), rgba(221, 221, 221, 0.75), rgba(221, 221, 221, 0));
+    margin: 20px 0;
+}
 
 /* --- Main Content --- */
-main { line-height: 1.6; }
-main h2 { color: #FFAAAA; /* Light Red/Pink */ font-family: Georgia, serif; }
-main h3 { color: #AAAAFF; /* Light Blue */ border-bottom: 1px solid #666666; padding-bottom: 3px; }
+main {
+    line-height: 1.6;
+}
+main h2 {
+    color: #FFAAAA; /* Light Red/Pink */
+    font-family: Georgia, serif;
+}
+main h3 {
+    color: #AAAAFF; /* Light Blue */
+    border-bottom: 1px solid #666666;
+    padding-bottom: 3px;
+}
 
 /* --- Specific Retro Elements --- */
 .construction-zone {
-    border: 1px dashed #FF8C00; /* Orange dash still works */
+    border: 1px dashed #FF8C00; /* Orange dash */
     padding: 10px;
     margin: 20px 0;
     text-align: center;
-    /* REMOVED background-color: #FFFFE0; */
-    /* Text color should now inherit from body (light grey) */
-    /* color: inherit; */ /* Not strictly needed, will inherit */
 }
 
 .construction-zone img {
-    max-width: 200px; /* Adjust size as needed */
+    max-width: 200px;
     height: auto;
     display: block;
     margin-left: auto;
@@ -83,12 +121,8 @@ main h3 { color: #AAAAFF; /* Light Blue */ border-bottom: 1px solid #666666; pad
     display: block;
     vertical-align: middle;
     margin: 0;
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Keep the font for fun */
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 0.9em;
-    /* REMOVED explicit color: #000000; */
-    /* Let it inherit the body's light grey color */
-    /* Or set explicitly if you want a different bright color: */
-    /* color: #00FF00; */ /* Example: Use bright green like tagline */
 }
 
 /* --- Footer --- */
@@ -100,17 +134,23 @@ footer {
     font-size: 0.8em;
 }
 
-.hit-counter { margin-top: 10px; }
-.hit-counter img { vertical-align: middle; }
+.hit-counter {
+    margin-top: 10px;
+}
+.hit-counter img {
+    vertical-align: middle;
+}
 
-ul li { color: inherit; }
+ul li {
+    color: inherit;
+}
 
 /* --- Guestbook Styles --- */
 .guestbook-form {
-    border: 1px dashed #888888; /* Dashed border */
+    border: 1px dashed #888888;
     padding: 15px;
     margin-bottom: 20px;
-    background-color: #111111; /* Slightly lighter black if needed */
+    background-color: #111111;
 }
 
 .form-group {
@@ -118,7 +158,7 @@ ul li { color: inherit; }
 }
 
 .form-group label {
-    display: block; /* Labels on their own line */
+    display: block;
     margin-bottom: 3px;
     font-weight: bold;
     color: #00FF00; /* Bright green labels */
@@ -126,40 +166,76 @@ ul li { color: inherit; }
 
 .form-group input[type="text"],
 .form-group textarea {
-    background-color: #222222; /* Dark background for inputs */
-    color: #DDDDDD; /* Light text */
+    background-color: #222222;
+    color: #DDDDDD;
     border: 1px solid #666666;
     padding: 5px;
-    font-family: "Courier New", monospace; /* Monospace font */
-    width: 90%; /* Adjust width */
-    max-width: 400px; /* Max width */
+    font-family: "Courier New", monospace;
+    width: 90%;
+    max-width: 400px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: 1px solid #00FFFF; /* Cyan border glow */
+    background-color: #111111;
+}
+
+/* --- Retro Button --- */
 .retro-button {
-    background-color: #C0C0C0; /* Classic grey */
+    background-color: #C0C0C0;
     color: #000000;
-    border: 2px outset #FFFFFF; /* 3D effect */
+    border: 2px outset #FFFFFF;
     padding: 5px 15px;
     font-weight: bold;
     cursor: pointer;
 }
-
 .retro-button:active {
     border-style: inset;
 }
 
-/* Style the displayed entries */
+/* --- Guestbook Entries --- */
 .guestbook-entry {
     border-bottom: 1px dotted #666666;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
-
 .guestbook-entry p {
     margin: 0;
     line-height: 1.5;
 }
-
 .guestbook-entry strong {
-    color: #AAAAFF; /* Light blue for field names */
+    color: #AAAAFF;
+}
+
+/* --- Project Items --- */
+.project-item {
+    margin-bottom: 25px;
+}
+
+.project-item a {
+    color: #a56cff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.project-item a:hover {
+    text-decoration: underline;
+}
+
+.project-item .button-link {
+    display: inline-block;
+    background-color: #a56cff;
+    color: #0f0f10;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.project-item .button-link:hover {
+    background-color: #c39eff; /* lighter purple */
+    color: #000000;
 }
