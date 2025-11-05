@@ -1,5 +1,5 @@
 // ==========================================================
-// TaurusTech Guestbook Frontend
+// TaurusTech Guestbook Frontend (Auto-Domain Compatible)
 // Handles displaying approved entries + form submissions
 // ==========================================================
 
@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   loadGuestbookEntries();
   setupGuestbookForm();
 });
+
+// ===== Base API URL (auto-detects domain) =====
+const API_BASE =
+  window.location.hostname.includes("taurustech.me")
+    ? "https://taurustech.me/api"
+    : "/api"; // works on *.pages.dev during testing
 
 // ===== Load approved guestbook entries =====
 async function loadGuestbookEntries() {
@@ -16,8 +22,8 @@ async function loadGuestbookEntries() {
   container.innerHTML = `<p class="loading-text">Loading entries...</p>`;
 
   try {
-    const res = await fetch("https://taurustech.me/api/get-entries", {
-      headers: { "Accept": "application/json" },
+    const res = await fetch(`${API_BASE}/get-entries`, {
+      headers: { Accept: "application/json" },
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -28,14 +34,14 @@ async function loadGuestbookEntries() {
       return;
     }
 
-    // Build entry markup
     const html = entries
-      .map(e => `
+      .map(
+        (e) => `
         <div class="guestbook-entry">
           <p class="guestbook-message">"${escapeHtml(e.message)}"</p>
           <p class="guestbook-meta">– ${escapeHtml(e.name)} (${formatDate(e.timestamp)})</p>
-        </div>
-      `)
+        </div>`
+      )
       .join("");
 
     container.innerHTML = html;
@@ -68,7 +74,7 @@ function setupGuestbookForm() {
 
     try {
       const formData = new FormData(form);
-      const res = await fetch("https://taurustech.me/api/submit-entry", {
+      const res = await fetch(`${API_BASE}/submit-entry`, {
         method: "POST",
         body: formData,
       });
@@ -84,7 +90,8 @@ function setupGuestbookForm() {
       }
     } catch (err) {
       console.error("❌ Error submitting form:", err);
-      statusEl.textContent = "Network error submitting entry.";
+      statusEl.textContent =
+        "Network error submitting entry. Please check your connection or try again later.";
       statusEl.style.color = "#ff6b6b";
     }
   });
@@ -92,14 +99,16 @@ function setupGuestbookForm() {
 
 // ===== Utility: sanitize HTML to prevent injection =====
 function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, tag =>
-    ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;",
-    }[tag] || tag)
+  return str.replace(/[&<>"']/g, (tag) =>
+    (
+      {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[tag] || tag
+    )
   );
 }
 

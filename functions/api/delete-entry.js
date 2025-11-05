@@ -1,3 +1,22 @@
+// ===== TaurusTech Global CORS Utility =====
+function getCorsHeaders(request) {
+  const origin = request.headers.get("Origin");
+  const allowed = [
+    "https://taurustech.me",
+    "https://74f3577a.kcasko-github-io.pages.dev"
+  ];
+  const corsOrigin = allowed.includes(origin)
+    ? origin
+    : "https://taurustech.me";
+
+  return {
+    "Access-Control-Allow-Origin": corsOrigin,
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, X-Guestbook-Key",
+    "Access-Control-Max-Age": "86400"
+  };
+}
+
 export async function onRequestPost({ request, env }) {
   try {
     if (!env.GUESTBOOK_KV || !env.GUESTBOOK_ADMIN_KEY)
