@@ -30,9 +30,17 @@ async function loadLayout() {
       })
     );
 
+    // Inject modular layout
     document.getElementById("site-header")?.insertAdjacentHTML("afterbegin", headerHTML);
     document.getElementById("site-nav")?.insertAdjacentHTML("afterbegin", navHTML);
     document.getElementById("site-footer")?.insertAdjacentHTML("afterbegin", footerHTML);
+
+    // ✅ Load hit counter script AFTER footer is injected
+    const hitCounterScript = document.createElement("script");
+    hitCounterScript.src = "/js/hitcounter.js";
+    hitCounterScript.onload = () => console.log("Hit counter script loaded successfully.");
+    hitCounterScript.onerror = (e) => console.error("❌ Failed to load hit counter script:", e);
+    document.body.appendChild(hitCounterScript);
 
   } catch (err) {
     console.error("❌ Layout load error:", err);
