@@ -5,28 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 Not Found - TaurusTech</title>
 
-  <!-- Core + Retro styles -->
+  <!-- Core Styles -->
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/retro-effects.css" />
 
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
-  <!-- Page-specific (kept for this page only) -->
   <style>
-    .blinking-cursor {
-      font-weight: bold;
-      color: #00FF00;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      from, to { opacity: 1; }
-      50% { opacity: 0; }
-    }
+    /* Page-specific styling */
     .error-code {
       font-family: "Courier New", monospace;
       font-size: 1.5em;
-      color: #FF0000;
+      color: #ff6b6b;
       margin-bottom: 15px;
+      text-align: center;
+    }
+
+    main {
+      text-align: center;
+    }
+
+    main a {
+      color: #a56cff;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    main a:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .blinking-cursor {
+      font-weight: bold;
+      color: #a56cff;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
     }
   </style>
 </head>
@@ -40,10 +55,11 @@
           <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
         </a>
       </h1>
-      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
+      <p class="tagline" data-typewriter>
+        // Navigating the web since the 90s, coding in the 20s //
+      </p>
     </header>
 
-    <!-- Navigation remains the same for consistency -->
     <nav>
       <ul>
         <li><a href="/">HOME</a></li>
@@ -59,58 +75,46 @@
     <main>
       <h2 class="error-code">ERROR 404 :: Resource Not Located</h2>
 
-      <p>Hmm, seems the digital pathway you requested leads to a dead end or an empty sector.</p>
+      <p>Hmm, it looks like the digital pathway you requested leads to a dead end or an empty sector.</p>
       <p>
-        The requested URL was not found on this server. That’s all we know.
+        The requested URL was not found on this server.
         <span class="blinking-cursor">_</span>
       </p>
 
-      <p>Perhaps you mistyped the address, or maybe the link you followed was outdated?</p>
-
-      <p>Here are some options:</p>
-      <ul>
-        <li>Double-check the URL in your address bar.</li>
-        <li>Go back to the <a href="/">TaurusTech Homepage</a>.</li>
-        <li>Explore other sections:
-          <ul>
-            <li><a href="/about.html">About Me</a></li>
-            <li><a href="/projects.html">Projects</a></li>
-            <li><a href="/portfolio/homelab.html">Home Lab Log</a></li>
-          </ul>
-        </li>
+      <p>Here are some ways to get back on track:</p>
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li>🔹 Double-check the URL in your address bar.</li>
+        <li>🔹 Go back to the <a href="/">TaurusTech Homepage</a>.</li>
+        <li>🔹 Explore other sections:</li>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li>– <a href="/about.html">About Me</a></li>
+          <li>– <a href="/projects.html">Projects</a></li>
+          <li>– <a href="/portfolio/homelab.html">Home Lab Log</a></li>
+        </ul>
       </ul>
-
-      <!-- Optional retro graphic -->
-      <!-- <img src="/images/sad_computer.gif" alt="Sad computer icon"> -->
     </main>
 
     <hr class="fancy-hr" />
 
-    <footer>
-      <p>Last Updated: <span id="last-updated-date"></span></p>
-      <p>~ TaurusTech ~</p>
+    <footer id="site-footer">
+      <p class="last-updated">
+        Last Updated: <span id="last-updated-date"></span>
+      </p>
+      <p class="brand-line">~ TaurusTech ~</p>
 
       <div class="hit-counter">
         <p>
           You are visitor
-          <span id="visitorCount" class="retro-counter">...</span>
+          <span id="visitorCount" class="visitor-counter">...</span>
         </p>
       </div>
 
-      <!-- Retro Mode Toggle -->
-      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
-        Deactivate 90s Mode
-      </button>
-
-      <!-- JavaScript Modules -->
-      <script src="/js/hitcounter.js"></script>
-      <script src="/js/toggleRetro.js"></script>
+      <script src="/js/hitcounter.js" defer></script>
     </footer>
+  </div>
 
-  </div> <!-- /container -->
-
-  <!-- Last updated helper -->
   <script>
+    // Update last modified date
     const lastUpdatedElement = document.getElementById('last-updated-date');
     if (document.lastModified && lastUpdatedElement) {
       const lastModifiedDate = new Date(document.lastModified);
@@ -121,6 +125,5 @@
       lastUpdatedElement.textContent = "N/A";
     }
   </script>
-
 </body>
 </html>
