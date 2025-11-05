@@ -1,37 +1,60 @@
-// === TaurusTech Visits Tracker ===
-// Powered by Cloudflare Workers
+// === TaurusTech Visits Tracker (Final Reliable Version) ===
+// Works even with dynamically injected footer
+// Powered by Cloudflare Workers (api/visits)
 
-// small global flag to confirm load
-window.__tt_visits_loaded = true;
+console.log("[TaurusTech] visits.js loaded");
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const el = document.getElementById("visitorCount");
-  if (!el) {
-    console.warn("⚠️ visitorCount element not found — visits script exiting.");
-    return;
-  }
+// Wait for the footer visitor element to exist before running
+async function waitForVisitorElement() {
+  return new Promise((resolve) => {
+    const check = () => {
+      const el = document.getElementById("visitorCount");
+      if (el) resolve(el);
+      else requestAnimationFrame(check); // checks every frame (faster than setTimeout)
+    };
+    check();
+  });
+}
 
-  try {
-    const cacheKey = "taurustech_visits";
-    const cached = localStorage.getItem(cacheKey);
+(async () => {
+  const el = await waitForVisitorElement();
 
-    // Show cached value immediately for snappy UX
-    if (cached) el.textContent = cached;
+  const cacheKey = "taurustech_visits";
+  const cached = localStorage.getItem(cacheKey);
 
-    // Fetch the fresh count from Cloudflare Worker
-    const res = await fetch("https://taurustech.me/api/visits", { credentials: "include" });
-    if (!res.ok) throw new Error(`Bad response: ${res.status}`);
+  // Show cached value instantly
+  if (cached) el.textContent = cached;
 
-    const data = await res.json();
-    const formatted = Number(data.visits || 0).toLocaleString();
-
-    // Update display and cache locally
+  // Helper: update text + local cache
+  const updateDisplay = (count) => {
+    const formatted = Number(count || 0).toLocaleString();
     el.textContent = formatted;
     localStorage.setItem(cacheKey, formatted);
+  };
 
-    console.log(`✅ Visits updated: ${formatted}`);
-  } catch (err) {
-    console.error("❌ Visits fetch error:", err);
-    el.textContent = "N/A";
+  // Fetch visit count from Worker
+  async function fetchVisits(retry = false) {
+    try {
+      const res = await fetch("https://taurustech.me/api/visits", {
+        credentials: "include",
+        headers: { "Accept": "application/json" },
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+      if (!data || typeof data.visits === "undefined")
+        throw new Error("Invalid Worker response");
+
+      updateDisplay(data.visits);
+      console.log(`[TaurusTech] Visits updated → ${data.visits}`);
+    } catch (err) {
+      console.warn(`[TaurusTech] Visit fetch error: ${err.message}`);
+      if (!retry) setTimeout(() => fetchVisits(true), 1500);
+      else el.textContent = "N/A";
+    }
   }
-});
+
+  // Initial fetch
+  fetchVisits();
+})();
