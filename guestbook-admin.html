@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaurusTech - Guestbook Admin</title>
+
+  <!-- Load saved retro state before rendering -->
+  <script>
+    (function() {
+      const mode = localStorage.getItem("retroMode");
+      if (mode === "off") document.documentElement.classList.add("retro-off");
+    })();
+  </script>
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+  <!-- Core Layout -->
+  <script src="/js/core.js" defer></script>
+  <script src="/js/typewriter.js" defer></script>
+  <script src="/js/guestbook-admin.js" defer></script>
+</head>
+<body>
+
+  <div class="container">
+    <header id="site-header"></header>
+    <nav id="site-nav"></nav>
+
+    <hr class="fancy-hr" />
+
+    <main>
+      <h2>Guestbook Moderation Panel</h2>
+      <p>Review pending entries and approve or delete them.</p>
+
+      <section id="admin-controls" style="margin-top: 20px;">
+        <button id="refreshButton" class="retro-button">🔄 Refresh List</button>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <div id="pendingEntries">
+        <p>Loading pending entries...</p>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+  </div>
+
+</body>
+</html>

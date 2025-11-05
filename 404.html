@@ -4,73 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 Not Found - TaurusTech</title>
-
-  <!-- Core Styles -->
   <link rel="stylesheet" href="/css/styles.css" />
-
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-
-  <style>
-    /* Page-specific styling */
-    .error-code {
-      font-family: "Courier New", monospace;
-      font-size: 1.5em;
-      color: #ff6b6b;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    main {
-      text-align: center;
-    }
-
-    main a {
-      color: #a56cff;
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-    main a:hover {
-      color: #ffffff;
-      text-decoration: none;
-    }
-
-    .blinking-cursor {
-      font-weight: bold;
-      color: #a56cff;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-  </style>
+  <script src="/js/core.js" defer></script>
 </head>
 <body>
-
   <div class="container">
-
-    <header>
-      <h1>
-        <a href="/">
-          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
-        </a>
-      </h1>
-      <p class="tagline" data-typewriter>
-        // Navigating the web since the 90s, coding in the 20s //
-      </p>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
-        <li><a href="/guestbook.html">GUESTBOOK</a></li>
-      </ul>
-    </nav>
-
-    <hr class="fancy-hr" />
+    <!-- Modular sections -->
+    <header id="site-header"></header>
+    <nav id="site-nav"></nav>
 
     <main>
       <h2 class="error-code">ERROR 404 :: Resource Not Located</h2>
@@ -94,36 +36,7 @@
       </ul>
     </main>
 
-    <hr class="fancy-hr" />
-
-    <footer id="site-footer">
-      <p class="last-updated">
-        Last Updated: <span id="last-updated-date"></span>
-      </p>
-      <p class="brand-line">~ TaurusTech ~</p>
-
-      <div class="hit-counter">
-        <p>
-          You are visitor
-          <span id="visitorCount" class="visitor-counter">...</span>
-        </p>
-      </div>
-
-      <script src="/js/hitcounter.js" defer></script>
-    </footer>
+    <footer id="site-footer"></footer>
   </div>
-
-  <script>
-    // Update last modified date
-    const lastUpdatedElement = document.getElementById('last-updated-date');
-    if (document.lastModified && lastUpdatedElement) {
-      const lastModifiedDate = new Date(document.lastModified);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
-      lastUpdatedElement.textContent = formattedDate;
-    } else if (lastUpdatedElement) {
-      lastUpdatedElement.textContent = "N/A";
-    }
-  </script>
 </body>
 </html>

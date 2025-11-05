@@ -13,19 +13,22 @@
     })();
   </script>
 
-  <!-- Core + Retro Styles -->
+  <!-- Core Styles -->
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
-  <!-- Core layout loader -->
-  <script defer src="/js/core.js"></script>
-  <script defer src="/js/typewriter.js"></script>
+  <!-- Modular Layout -->
+  <script src="/js/core.js" defer></script>
+  <script src="/js/typewriter.js" defer></script>
+  <script src="/js/guestbook.js" defer></script>
 </head>
 <body>
 
   <div class="container">
-    <div id="site-header"></div>
-    <div id="site-nav"></div>
+    <!-- Modular Layout Injection -->
+    <header id="site-header"></header>
+    <nav id="site-nav"></nav>
+
     <hr class="fancy-hr" />
 
     <main>
@@ -33,16 +36,16 @@
       <p>Leave a message! New entries appear after approval.</p>
 
       <!-- === Guestbook Form === -->
-      <form id="guestbookForm" class="guestbook-form">
+      <form id="guestbook-form" class="guestbook-form">
         <div class="form-group">
           <label for="guestbookName">Name:</label>
-          <input type="text" id="guestbookName" name="name" required size="30" maxlength="50" />
+          <input type="text" id="guestbookName" name="name" required maxlength="50" />
         </div>
         <div class="form-group">
           <label for="guestbookMessage">Message:</label>
-          <textarea id="guestbookMessage" name="message" required rows="5" cols="40" maxlength="500"></textarea>
+          <textarea id="guestbookMessage" name="message" required rows="5" maxlength="500"></textarea>
         </div>
-        <div id="formStatus" style="margin-bottom:10px;color:#00FF00;"></div>
+        <p id="guestbook-status" class="form-status"></p>
         <div class="form-group">
           <button type="submit" class="retro-button">Sign Guestbook</button>
         </div>
@@ -52,88 +55,13 @@
 
       <!-- === Entries Display === -->
       <h3>Entries:</h3>
-      <div id="guestbookEntriesDisplay">
+      <div id="guestbook-entries">
         <p>Loading entries...</p>
       </div>
     </main>
 
-    <hr class="fancy-hr" />
-    <div id="site-footer"></div>
+    <footer id="site-footer"></footer>
   </div>
-
-  <!-- ===== GUESTBOOK FUNCTIONALITY ===== -->
-  <script>
-    const guestbookForm = document.getElementById("guestbookForm");
-    const nameInput = document.getElementById("guestbookName");
-    const messageInput = document.getElementById("guestbookMessage");
-    const entriesDisplay = document.getElementById("guestbookEntriesDisplay");
-    const formStatus = document.getElementById("formStatus");
-
-    async function fetchAndDisplayEntries() {
-      entriesDisplay.innerHTML = "<p>Loading entries...</p>";
-      try {
-        const response = await fetch("/api/get-entries", { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-        const entries = await response.json();
-
-        entriesDisplay.innerHTML = "";
-        if (entries.length === 0) {
-          entriesDisplay.innerHTML = "<p>No entries yet. Be the first!</p>";
-          return;
-        }
-
-        entries.forEach(entry => {
-          const entryDiv = document.createElement("div");
-          entryDiv.className = "guestbook-entry";
-
-          const date = new Date(entry.timestamp);
-          const formattedDate = date.toLocaleString("en-US", {
-            year: "numeric", month: "long", day: "numeric",
-            hour: "2-digit", minute: "2-digit"
-          });
-
-          const safeName = entry.name.replace(/[<>]/g, "");
-          const safeMessage = entry.message.replace(/[<>]/g, "");
-
-          entryDiv.innerHTML = `
-            <p>
-              <strong>Name:</strong> ${safeName}<br>
-              <strong>Date:</strong> ${formattedDate}<br>
-              <strong>Message:</strong> ${safeMessage}
-            </p>
-          `;
-          entriesDisplay.appendChild(entryDiv);
-        });
-      } catch (error) {
-        console.error("Error fetching entries:", error);
-        entriesDisplay.innerHTML = "<p style='color:#FF0000;'>Error loading entries. Please refresh.</p>";
-      }
-    }
-
-    guestbookForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      formStatus.textContent = "Submitting...";
-      formStatus.style.color = "#FFFF00";
-
-      const formData = new FormData(guestbookForm);
-      try {
-        const response = await fetch("/api/submit-entry", { method: "POST", body: formData });
-        const result = await response.json();
-        if (result.success) {
-          formStatus.textContent = result.message || "Submitted for moderation!";
-          formStatus.style.color = "#00FF00";
-          nameInput.value = "";
-          messageInput.value = "";
-        } else throw new Error(result.message || "Submission failed.");
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        formStatus.textContent = `Error: ${error.message}`;
-        formStatus.style.color = "#FF0000";
-      }
-    });
-
-    document.addEventListener("DOMContentLoaded", fetchAndDisplayEntries);
-  </script>
 
 </body>
 </html>
