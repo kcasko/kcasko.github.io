@@ -37,7 +37,7 @@ async function loadLayout() {
 
     // ✅ Load hit counter script AFTER footer is injected
     const hitCounterScript = document.createElement("script");
-    hitCounterScript.src = "/js/hitcounter.js";
+    hitCounterScript.src = `${prefix}js/hitcounter.js`;
     hitCounterScript.onload = () => console.log("Hit counter script loaded successfully.");
     hitCounterScript.onerror = (e) => console.error("❌ Failed to load hit counter script:", e);
     document.body.appendChild(hitCounterScript);
