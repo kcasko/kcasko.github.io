@@ -1,38 +1,34 @@
-// ================================================
-// TaurusTech Guestbook API — Delete Entry (Secured)
-// ================================================
 export async function onRequestPost({ request, env }) {
   try {
     if (!env.GUESTBOOK_KV || !env.GUESTBOOK_ADMIN_KEY)
       throw new Error("Missing environment bindings");
 
-    // === Check Moderator Access Key ===
-    const authHeader = request.headers.get("X-Guestbook-Key");
-    if (authHeader !== env.GUESTBOOK_ADMIN_KEY) {
-      return jsonResponse({ success: false, message: "Unauthorized" }, 403);
-    }
+    const key = request.headers.get("X-Guestbook-Key");
+    if (key !== env.GUESTBOOK_ADMIN_KEY)
+      return new Response(JSON.stringify({ success: false, message: "Unauthorized" }), {
+        status: 403,
+        headers: { "Content-Type": "application/json" },
+      });
 
     const { id } = await request.json();
-    if (!id) return jsonResponse({ success: false, message: "Missing entry ID." }, 400);
+    if (!id)
+      return new Response(JSON.stringify({ success: false, message: "Missing entry ID." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
 
-    const key = `entry:${id}`;
-    await env.GUESTBOOK_KV.delete(key);
+    await env.GUESTBOOK_KV.delete(`entry:${id}`);
 
-    console.log(`🗑️ Entry deleted: ${id}`);
-    return jsonResponse({ success: true, message: "Entry deleted." });
+    return new Response(JSON.stringify({ success: true, message: "Entry deleted." }), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://taurustech.me",
+      },
+    });
   } catch (error) {
-    console.error("❌ Error deleting entry:", error);
-    return jsonResponse({ success: false, message: "Server error deleting entry." }, 500);
+    return new Response(JSON.stringify({ success: false, message: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
-}
-
-function jsonResponse(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "https://taurustech.me",
-      "Access-Control-Allow-Methods": "POST, OPTIONS",
-    },
-  });
 }
