@@ -1,15 +1,37 @@
 // ==========================================================
-// TaurusTech Guestbook Admin
+// TaurusTech Guestbook Admin (Secure Edition)
 // Displays pending entries + approve/delete controls
+// Requires moderator key authentication
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetchPendingEntries();
+  // Prompt for key if not already stored
+  initAdminAuth().then(fetchPendingEntries);
 
   const refreshBtn = document.getElementById("refreshButton");
   if (refreshBtn) refreshBtn.addEventListener("click", fetchPendingEntries);
 });
 
+// ==========================================================
+// Admin Authentication
+// ==========================================================
+async function initAdminAuth() {
+  const savedKey = localStorage.getItem("tt_guestbook_key");
+  if (savedKey) return; // already logged in
+
+  const key = prompt("Enter your TaurusTech Guestbook Admin Key:");
+  if (!key) {
+    alert("Admin key required to access moderation tools.");
+    throw new Error("No admin key provided");
+  }
+
+  localStorage.setItem("tt_guestbook_key", key);
+  alert("✅ Key saved for this session.");
+}
+
+// ==========================================================
+// Fetch and Render Pending Entries
+// ==========================================================
 async function fetchPendingEntries() {
   const container = document.getElementById("pendingEntries");
   container.innerHTML = `<p>Loading pending entries...</p>`;
@@ -47,6 +69,9 @@ async function fetchPendingEntries() {
   }
 }
 
+// ==========================================================
+// Approve/Delete Actions
+// ==========================================================
 function attachActionButtons() {
   document.querySelectorAll(".approveBtn").forEach((btn) => {
     btn.addEventListener("click", async (e) => {
@@ -65,14 +90,21 @@ function attachActionButtons() {
 
 async function handleEntryAction(id, action) {
   try {
-    const confirmAction = confirm(
-      `Are you sure you want to ${action} this entry?`
-    );
+    const confirmAction = confirm(`Are you sure you want to ${action} this entry?`);
     if (!confirmAction) return;
+
+    const adminKey = localStorage.getItem("tt_guestbook_key");
+    if (!adminKey) {
+      alert("Missing admin key. Please reload and log in again.");
+      return;
+    }
 
     const res = await fetch(`https://taurustech.me/api/${action}-entry`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-Guestbook-Key": adminKey,
+      },
       body: JSON.stringify({ id }),
     });
 
@@ -89,7 +121,9 @@ async function handleEntryAction(id, action) {
   }
 }
 
-// ===== Utility: sanitize HTML to prevent injection =====
+// ==========================================================
+// Utilities
+// ==========================================================
 function escapeHtml(str) {
   return str.replace(/[&<>"']/g, tag =>
     ({
@@ -102,7 +136,6 @@ function escapeHtml(str) {
   );
 }
 
-// ===== Utility: format timestamp =====
 function formatDate(timestamp) {
   try {
     const d = new Date(timestamp);
