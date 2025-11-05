@@ -7,38 +7,19 @@
 
   <!-- Core + Retro Styles -->
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/retro-effects.css" />
+  <link rel="stylesheet" href="/css/retro-effects.css" id="retroStyle" />
+
 
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
+  <!-- ===== DYNAMIC LAYOUT INJECTION ===== -->
+  <div id="site-header"></div>
+  <div id="site-nav"></div>
+
+  <!-- ===== MAIN CONTAINER ===== -->
   <div class="container">
-
-    <!-- ===== HEADER ===== -->
-    <header>
-      <h1>
-        <a href="/">
-          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
-        </a>
-      </h1>
-      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
-    </header>
-
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-      <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li><a href="/portfolio/homelab.html">HOME LAB LOG</a></li>
-        <li><a href="/guestbook.html">GUESTBOOK</a></li>
-      </ul>
-    </nav>
-
-    <hr class="fancy-hr" />
-
-    <!-- ===== MAIN CONTENT ===== -->
     <main>
       <article style="max-width: 720px; margin: 0 auto; padding: 2rem; font-family: 'Poppins', 'Quicksand', sans-serif; color: #ffffff; background-color: #0f0f10; line-height: 1.6;">
 
@@ -58,7 +39,7 @@
 
         <p>If you’re the kind of person who starts a lot of things but rarely finishes, pick one and close it out. You’ll learn more from finishing one project than from leaving ten halfway done.</p>
 
-        <!-- Video Embed -->
+        <!-- ===== VIDEO EMBED ===== -->
         <div style="margin: 2rem 0; text-align: center;">
           <iframe width="100%" height="405" style="max-width: 720px; border: none; border-radius: 12px;"
             src="https://www.youtube.com/embed/z34wyIlcdUw"
@@ -78,44 +59,21 @@
 
       </article>
     </main>
-
-    <hr class="fancy-hr" />
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-      <p>Last Updated: <span id="last-updated-date"></span></p>
-      <p>~ TaurusTech ~</p>
-
-      <div class="hit-counter">
-        <p>
-          You are visitor
-          <span id="visitorCount" class="retro-counter">...</span>
-        </p>
-      </div>
-
-      <!-- Retro Mode Toggle -->
-      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
-        Activate 90s Mode
-      </button>
-
-      <!-- JavaScript Modules -->
-      <script src="/js/hitcounter.js"></script>
-      <script src="/js/toggleRetro.js"></script>
-    </footer>
-
   </div>
+
+  <hr class="fancy-hr" />
+
+  <!-- ===== DYNAMIC FOOTER ===== -->
+  <div id="site-footer"></div>
+
+  <!-- ===== CORE SCRIPT (Layout Loader + Retro Toggle + Active Link) ===== -->
+  <script src="/js/core.js"></script>
 
   <!-- ===== LAST UPDATED SCRIPT ===== -->
   <script>
-    const lastUpdatedElement = document.getElementById('last-updated-date');
-    if (document.lastModified && lastUpdatedElement) {
-      const lastModifiedDate = new Date(document.lastModified);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = lastModifiedDate.toLocaleDateString('en-US', options);
-      lastUpdatedElement.textContent = formattedDate;
-    } else if (lastUpdatedElement) {
-      lastUpdatedElement.textContent = "Date unavailable";
-    }
+    const lastUpdatedElement = document.createElement('p');
+    lastUpdatedElement.innerHTML = `Last Updated: <span>${new Date(document.lastModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>`;
+    document.getElementById('site-footer')?.appendChild(lastUpdatedElement);
   </script>
 
 </body>

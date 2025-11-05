@@ -5,40 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaurusTech - Home Lab Log</title>
 
-  <!-- Core + Retro styles -->
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/retro-effects.css" />
+  <!-- Instantly apply saved retro state -->
+  <script>
+    (function() {
+      const mode = localStorage.getItem("retroMode");
+      if (mode === "off") document.documentElement.classList.add("retro-off");
+    })();
+  </script>
 
+  <!-- Core + Retro Styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/retro-effects.css" id="retroStyle" />
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+  <!-- Core Script -->
+  <script defer src="/js/core.js"></script>
+  <script defer src="/js/typewriter.js"></script>
 </head>
 <body>
 
   <div class="container">
+    <div id="site-header"></div>
+    <div id="site-nav"></div>
+    <hr class="fancy-hr">
 
-    <!-- ===== HEADER ===== -->
-    <header>
-      <h1>
-        <a href="/">
-          <img src="/images/TaurusTech-Logo.png" alt="TaurusTech Logo" id="logo" />
-        </a>
-      </h1>
-      <p class="tagline blink">// Navigating the web since the 90s, coding in the 20s //</p>
-    </header>
-
-    <!-- ===== NAVIGATION ===== -->
-    <nav>
-      <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li><a href="/portfolio/homelab.html" class="active">HOME LAB LOG</a></li>
-        <li><a href="/guestbook.html">GUESTBOOK</a></li>
-      </ul>
-    </nav>
-
-    <hr class="fancy-hr" />
-
-    <!-- ===== MAIN CONTENT ===== -->
     <main>
       <h2>Home Lab Log :: The Digital Playground</h2>
 
@@ -176,44 +166,8 @@
       </div>
     </main>
 
-    <hr class="fancy-hr" />
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-      <p>Last Updated: <span id="last-updated-date"></span></p>
-      <p>~ TaurusTech ~</p>
-
-      <div class="hit-counter">
-        <p>
-          You are visitor
-          <span id="visitorCount" class="retro-counter">...</span>
-        </p>
-      </div>
-
-      <!-- Retro Mode Toggle -->
-      <button id="toggleRetro" class="retro-button" style="margin-top: 10px;">
-        Activate 90s Mode
-      </button>
-
-      <!-- JavaScript Modules -->
-      <script src="/js/hitcounter.js"></script>
-      <script src="/js/toggleRetro.js"></script>
-    </footer>
-
-  </div> <!-- /container -->
-
-  <!-- ===== LAST UPDATED SCRIPT ===== -->
-  <script>
-    const lastUpdatedElement = document.getElementById("last-updated-date");
-    if (document.lastModified && lastUpdatedElement) {
-      const lastModifiedDate = new Date(document.lastModified);
-      const options = { year: "numeric", month: "long", day: "numeric" };
-      const formattedDate = lastModifiedDate.toLocaleDateString("en-US", options);
-      lastUpdatedElement.textContent = formattedDate;
-    } else if (lastUpdatedElement) {
-      lastUpdatedElement.textContent = "Date unavailable";
-    }
-  </script>
-
+    <hr class="fancy-hr">
+    <div id="site-footer"></div>
+  </div>
 </body>
 </html>

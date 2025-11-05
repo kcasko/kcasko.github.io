@@ -1,3 +1,6 @@
+// === TaurusTech Hit Counter ===
+// Powered by Cloudflare Workers
+
 document.addEventListener("DOMContentLoaded", async () => {
   const counterElement = document.getElementById("visitorCount");
   if (!counterElement) return;
@@ -9,17 +12,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Display cached value instantly
     if (cached) counterElement.textContent = cached;
 
-    // Fetch fresh count from your own domain now
-    const res = await fetch("/api/hitcounter");
+    // Fetch the fresh count from your Cloudflare Worker
+    const res = await fetch("https://hit-counter.keezay.workers.dev/");
     if (!res.ok) throw new Error("Failed to fetch counter");
 
     const data = await res.json();
     const formatted = data.visits.toLocaleString();
 
+    // Update display and cache locally
     counterElement.textContent = formatted;
     localStorage.setItem(cacheKey, formatted);
   } catch (err) {
-    console.error("Retro Counter Error:", err);
+    console.error("Hit Counter Error:", err);
     counterElement.textContent = "N/A";
   }
 });

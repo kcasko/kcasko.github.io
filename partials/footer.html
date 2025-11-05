@@ -1,0 +1,81 @@
+<footer id="site-footer">
+
+  <hr class="fancy-hr">
+
+  <!-- Always visible -->
+  <p class="last-updated">
+    Last Updated: <span id="last-updated-date"></span>
+  </p>
+
+  <p class="brand-line">~ TaurusTech ~</p>
+
+  <div class="hit-counter">
+    <p>
+      You are visitor
+      <span id="visitorCount" class="retro-counter">...</span>
+    </p>
+  </div>
+
+  <!--
+  ====== Retro-only visuals ======
+  <div class="online-since" data-retroonly>
+    <p class="since-label">Online since</p>
+    <img src="/images/webtv-logo.png" alt="WebTV Logo" class="webtv-logo">
+    <p class="rebooted-label">Rebooted for the 2020s</p>
+  </div>
+
+  <div class="retro-banner" data-retroonly>
+    <marquee scrollamount="3" behavior="alternate" width="80%">
+      <span>Best viewed in Netscape Navigator 4.0 — 800×600 resolution — Dial-Up Friendly!</span>
+    </marquee>
+  </div>
+
+  <button id="toggleRetro" class="retro-button">Deactivate 90s Mode</button>
+
+  ====== Browser/Tech Badges ======
+  <div class="browser-badges" data-retroonly>
+    <div class="badge"><img src="/images/ie.png" alt="Internet Explorer Badge"></div>
+    <div class="badge"><img src="/images/html.png" alt="HTML5 Badge"></div>
+    <div class="badge"><img src="/images/js.png" alt="JavaScript Badge"></div>
+    <div class="badge"><img src="/images/css.png" alt="CSS3 Badge"></div>
+    <div class="badge"><img src="/images/netscape.png" alt="Netscape Navigator Badge"></div>
+  </div>
+  -->
+
+  <script src="/js/hitcounter.js" defer></script>
+
+  <style>
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px dashed #888888;
+      font-size: 0.8em;
+      color: #AAAAAA;
+      background-color: #000;
+      box-shadow: inset 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    footer p {
+      font-family: "Courier New", monospace;
+      margin: 5px 0;
+    }
+
+    footer .fancy-hr {
+      width: 60%;
+      margin: 0 auto 10px;
+      border: 0;
+      border-top: 1px dashed rgba(0, 255, 0, 0.3);
+    }
+
+    .retro-counter {
+      font-family: "Courier New", monospace;
+      color: #00FF00;
+      border: 1px solid #00FF00;
+      padding: 2px 6px;
+      background: #000;
+      display: inline-block;
+      text-shadow: 0 0 3px #00FF00;
+    }
+  </style>
+</footer>

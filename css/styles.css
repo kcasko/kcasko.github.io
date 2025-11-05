@@ -1,299 +1,643 @@
+/* ==========================================
+   TaurusTech Core Stylesheet
+   Base: Retro Modern Hybrid Theme
+   ========================================== */
+
 /* --- Basic Reset & Body --- */
 body {
-    background-color: #000000;
-    font-family: "Times New Roman", serif;
-    color: #DDDDDD;
-    margin: 0;
-    padding: 0;
+  background-color: #000000;
+  font-family: "Times New Roman", serif;
+  color: #DDDDDD;
+  margin: 0;
+  padding: 0;
 }
 
 /* --- Container --- */
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    border: 2px solid #888888;
-    padding: 15px;
-    box-shadow: 5px 5px 0px #444444;
+  max-width: 800px;
+  margin: 20px auto;
+  border: 2px solid #888888;
+  padding: 15px;
+  box-shadow: 5px 5px 0px #444444;
 }
 
 /* --- Header --- */
 header {
-    text-align: center;
-    margin-bottom: 15px;
-    border-bottom: 2px dashed #888888;
-    padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px dashed #888888;
+  padding-bottom: 10px;
 }
 
 header h1 {
-    margin: 0;
-    line-height: 1;
+  margin: 0;
+  line-height: 1;
 }
 
 #logo {
-    max-height: 220px;
-    width: auto;
-    display: inline-block;
-    vertical-align: middle;
+  max-height: 220px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .tagline {
-    font-family: "Courier New", monospace;
-    font-size: 0.9em;
-    color: #00FF00;
-    margin-top: 5px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+  color: #00FF00;
+  margin-top: 5px;
 }
 
 /* --- Navigation --- */
 nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-    margin: 15px 0;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin: 15px 0;
 }
 nav li {
-    display: inline-block;
-    margin: 0 10px;
+  display: inline-block;
+  margin: 0 10px;
 }
 nav a {
-    text-decoration: underline;
-    color: #00FFFF;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    transition: color 0.2s ease, background-color 0.2s ease;
+  text-decoration: underline;
+  color: #00FFFF;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 nav a:visited {
-    color: #FF00FF;
+  color: #FF00FF;
 }
 nav a:hover {
-    color: #FFFF00;
-    text-decoration: none;
+  color: #FFFF00;
+  text-decoration: none;
 }
 
 /* --- Mobile Navigation --- */
 @media (max-width: 600px) {
-    nav li {
-        display: block;
-        margin: 8px 0;
-    }
+  nav li {
+    display: block;
+    margin: 8px 0;
+  }
 }
 
 /* --- Horizontal Rules --- */
 hr.fancy-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(
-        to right,
-        rgba(221, 221, 221, 0),
-        rgba(221, 221, 221, 0.75),
-        rgba(221, 221, 221, 0)
-    );
-    margin: 20px 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(221, 221, 221, 0),
+    rgba(221, 221, 221, 0.75),
+    rgba(221, 221, 221, 0)
+  );
+  margin: 20px 0;
 }
 
 /* --- Main Content --- */
 main {
-    line-height: 1.6;
+  line-height: 1.6;
 }
 main h2 {
-    color: #FFAAAA;
-    font-family: Georgia, serif;
+  color: #FFAAAA;
+  font-family: Georgia, serif;
 }
 main h3 {
-    color: #AAAAFF;
-    border-bottom: 1px solid #666666;
-    padding-bottom: 3px;
+  color: #AAAAFF;
+  border-bottom: 1px solid #666666;
+  padding-bottom: 3px;
 }
 
 /* --- Specific Retro Elements --- */
 .construction-zone {
-    border: 1px dashed #FF8C00;
-    padding: 10px;
-    margin: 20px 0;
-    text-align: center;
+  border: 1px dashed #FF8C00;
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
 }
 .construction-zone img {
-    max-width: 200px;
-    height: auto;
-    display: block;
-    margin: 0 auto 5px;
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px;
 }
 .construction-zone p {
-    margin: 0;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 0.9em;
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 2px dashed #888888;
-    font-size: 0.8em;
-}
-
-footer p {
-    margin: 5px 0;
-    font-family: "Courier New", monospace;
-    color: #AAAAAA;
-}
-
-footer a {
-    color: #00FFFF;
-    text-decoration: underline;
-}
-footer a:hover {
-    color: #FFFF00;
+  margin: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 0.9em;
 }
 
 /* --- Hit Counter --- */
 .hit-counter {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .hit-counter img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 /* --- Unified Retro Counter --- */
 #visitorCount,
 .retro-counter {
-    font-family: "Courier New", monospace;
-    color: #00FF00;
-    background-color: #000000;
-    border: 1px solid #00FF00;
-    padding: 2px 4px;
-    text-shadow: 0 0 3px #00FF00;
-    display: inline-block;
+  font-family: "Courier New", monospace;
+  color: #00FF00;
+  background-color: #000000;
+  border: 1px solid #00FF00;
+  padding: 2px 4px;
+  text-shadow: 0 0 3px #00FF00;
+  display: inline-block;
 }
 
 /* --- Subtle CRT Scanlines --- */
 body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.02) 0px,
-        rgba(255, 255, 255, 0.02) 1px,
-        transparent 2px,
-        transparent 3px
-    );
-    z-index: 5;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  z-index: 5;
 }
 
 /* --- Retro Scrollbar --- */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #111111;
+  background: #111111;
 }
 ::-webkit-scrollbar-thumb {
-    background: #00FF00;
-    border: 2px solid #000000;
+  background: #00FF00;
+  border: 2px solid #000000;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #00CC00;
+  background: #00CC00;
 }
 
 /* --- Guestbook Styles --- */
 .guestbook-form {
-    border: 1px dashed #888888;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #111111;
+  border: 1px dashed #888888;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #111111;
 }
 
 .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .form-group label {
-    display: block;
-    margin-bottom: 3px;
-    font-weight: bold;
-    color: #00FF00;
+  display: block;
+  margin-bottom: 3px;
+  font-weight: bold;
+  color: #00FF00;
 }
 .form-group input[type="text"],
 .form-group textarea {
-    background-color: #222222;
-    color: #DDDDDD;
-    border: 1px solid #666666;
-    padding: 5px;
-    font-family: "Courier New", monospace;
-    width: 90%;
-    max-width: 400px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+  background-color: #222222;
+  color: #DDDDDD;
+  border: 1px solid #666666;
+  padding: 5px;
+  font-family: "Courier New", monospace;
+  width: 90%;
+  max-width: 400px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
-    outline: 1px solid #00FFFF;
-    background-color: #111111;
+  outline: 1px solid #00FFFF;
+  background-color: #111111;
+}
+
+/* ==========================================
+   Typewriter Animation (Cursor Fades Out)
+   ========================================== */
+h3 {
+  color: #a56cff;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.2;
+  padding-right: 4px;
+  vertical-align: middle;
+  position: relative;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards;
+}
+
+/* Cursor line with fade-out */
+h3::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2px;
+  height: 1em;
+  background-color: #a56cff;
+  animation: blink 0.8s step-end infinite, fadeout 1s ease forwards;
+  animation-delay: 0s, 6s; /* fade starts 3s typing + 3s blinking */
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes fadeout {
+  to { opacity: 0; }
 }
 
 /* --- Retro Button --- */
 .retro-button {
-    background-color: #C0C0C0;
-    color: #000000;
-    border: 2px outset #FFFFFF;
-    padding: 5px 15px;
-    font-weight: bold;
-    cursor: pointer;
+  background-color: #C0C0C0;
+  color: #000000;
+  border: 2px outset #FFFFFF;
+  padding: 5px 15px;
+  font-weight: bold;
+  cursor: pointer;
 }
 .retro-button:active {
-    border-style: inset;
+  border-style: inset;
 }
 
 /* --- Guestbook Entries --- */
 .guestbook-entry {
-    border-bottom: 1px dotted #666666;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  border-bottom: 1px dotted #666666;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .guestbook-entry p {
-    margin: 0;
-    line-height: 1.5;
+  margin: 0;
+  line-height: 1.5;
 }
 .guestbook-entry strong {
-    color: #AAAAFF;
+  color: #AAAAFF;
 }
 
 /* --- Project Items --- */
 .project-item {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 .project-item a {
-    color: #a56cff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease, background-color 0.2s ease;
+  color: #a56cff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 .project-item a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .project-item .button-link {
-    display: inline-block;
-    background-color: #a56cff;
-    color: #0f0f10;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  background-color: #a56cff;
+  color: #0f0f10;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .project-item .button-link:hover {
-    background-color: #c39eff;
-    color: #000000;
+  background-color: #c39eff;
+  color: #000000;
 }
 
 /* --- Print-Safe Mode --- */
 @media print {
-    body { background: #FFFFFF; color: #000000; }
-    .container { border: none; box-shadow: none; }
-    body::after { display: none; }
+  body { background: #FFFFFF; color: #000000; }
+  .container { border: none; box-shadow: none; }
+  body::after { display: none; }
 }
 
 /* --- Slight Brightness Boost for Images --- */
 img { filter: brightness(1.1); }
+
+/* ==========================================
+   Footer 2.0 — Unified TaurusTech Styling
+   ========================================== */
+
+footer {
+  text-align: center;
+  background-color: #000;
+  border-top: 2px dashed #888;
+  color: #AAA;
+  font-family: "Courier New", monospace;
+  padding: 15px 0 25px;
+  box-shadow: inset 0 0 15px rgba(0,255,255,0.1);
+  transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease;
+}
+
+footer p {
+  margin: 6px 0;
+  text-shadow: 0 0 3px rgba(0,255,255,0.25);
+}
+footer .brand-line {
+  color: #00FFFF;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
+}
+footer .last-updated span {
+  color: #00FF00;
+  text-shadow: 0 0 4px #00FF00;
+}
+
+/* WebTV + Banner */
+footer .webtv-logo {
+  height: 50px;
+  margin: 6px auto;
+  display: block;
+  filter: brightness(1.8)
+          drop-shadow(0 0 6px #00FFFF)
+          drop-shadow(0 0 12px #00FFFF);
+}
+footer .rebooted-label {
+  color: #00FFFF;
+  text-shadow: 0 0 5px #00FFFF;
+  margin-top: 4px;
+}
+footer .retro-banner span {
+  color: #00FF00;
+  text-shadow: 0 0 5px #00FF00;
+}
+
+/* Browser/Tech Badges */
+footer .browser-badges {
+  margin: 14px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+footer .browser-badges .badge img {
+  height: 50px;
+  width: auto;
+  filter: brightness(1.4) drop-shadow(0 0 6px #00FFFF);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+footer .browser-badges .badge img:hover {
+  transform: scale(1.08);
+  filter: brightness(2) drop-shadow(0 0 8px #00FF00);
+}
+
+/* Responsive Badge Scaling */
+@media (max-width: 480px) {
+  footer .browser-badges .badge img {
+    height: 40px;
+  }
+}
+
+/* Retro Toggle Button */
+#toggleRetro {
+  margin-top: 12px;
+  background-color: #C0C0C0;
+  color: #000;
+  border: 2px outset #FFF;
+  padding: 5px 15px;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#toggleRetro:hover {
+  background-color: #e0e0e0;
+}
+#toggleRetro:active {
+  border-style: inset;
+}
+
+/* Retro Visibility Rules */
+footer [data-retroonly] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+html.retro-off footer [data-retroonly] {
+  opacity: 0 !important;
+  transform: translateY(10px);
+  pointer-events: none !important;
+}
+html.retro-off body::after,
+html.retro-off footer::after {
+  display: none !important;
+}
+
+/* ==========================================
+   Retro Mode Compatibility + Transition
+   ========================================== */
+
+html.retro-off,
+html.retro-off body,
+html.retro-off footer,
+html.retro-off .container {
+  background-color: #000 !important;
+  color: #DDDDDD !important;
+  border-color: #888 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html.retro-off nav a {
+  color: #00FFFF !important;
+  text-decoration: underline;
+}
+html.retro-off nav a:hover {
+  color: #FFFF00 !important;
+}
+
+html.retro-off footer {
+  background: #000 !important;
+  color: #AAAAAA !important;
+  border-top: 2px dashed #888 !important;
+  box-shadow: none !important;
+}
+
+html.retro-off #toggleRetro {
+  background: #000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+  font-family: "Courier New", monospace;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+html.retro-off #toggleRetro:hover {
+  background: #00FF00;
+  color: #000;
+}
+
+html, body, footer, .container {
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease,
+    filter 0.6s ease,
+    box-shadow 0.6s ease,
+    opacity 0.6s ease;
+}
+
+/* CRT Bootup / Shutdown Simulation */
+@keyframes crt-shutdown {
+  0%   { opacity: 0; transform: scaleY(1); }
+  40%  { opacity: 1; transform: scaleY(0.05); }
+  60%  { opacity: 1; transform: scaleY(0.05); }
+  100% { opacity: 0; transform: scaleY(0); }
+}
+.crt-flicker-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  opacity: 0;
+  transform-origin: center;
+  pointer-events: none;
+  z-index: 99999;
+  animation: crt-shutdown 0.9s ease-in-out forwards;
+}
+
+@keyframes crt-bootup {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; background: #fff; }
+  100% { opacity: 0; }
+}
+.crt-bootup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99999;
+  animation: crt-bootup 1s ease-in-out forwards;
+}
+
+/* ==========================================
+   TaurusTech Modern Footer (Retro Off)
+   Compact + Sleek Layout
+   ========================================== */
+html.retro-off footer {
+  background: linear-gradient(to top, #000 70%, #0a0a0a 100%);
+  border-top: 1px solid #00ffff33;
+  padding: 12px 0 18px !important;
+  text-align: center;
+  color: #bfbfbf !important;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1);
+}
+
+/* Tighten spacing between lines */
+html.retro-off footer p {
+  margin: 3px 0 !important;
+  line-height: 1.3;
+}
+
+/* Highlight TaurusTech brand subtly */
+html.retro-off footer .brand-line {
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 3px #00ffff33;
+  letter-spacing: 0.5px;
+}
+
+/* Light accent under brand */
+html.retro-off footer .brand-line::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  margin: 3px auto 0;
+  background: linear-gradient(to right, transparent, #00ffff88, transparent);
+}
+
+/* Simplify hit counter style */
+html.retro-off #visitorCount {
+  border: 1px solid #00ffff55;
+  color: #00ffff;
+  background: transparent;
+  text-shadow: none;
+}
+
+/* Sleek modern toggle button */
+html.retro-off #toggleRetro {
+  margin-top: 10px;
+  background: #000;
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  padding: 4px 12px;
+  font-size: 0.85em;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+html.retro-off #toggleRetro:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 6px #00ffff66;
+}
+
+/* Remove leftover spacing */
+html.retro-off footer [data-retroonly],
+html.retro-off footer img {
+  display: none !important;
+}
+
+/* ==========================================
+   Smooth Footer Transition Between Modes
+   ========================================== */
+footer {
+  transition:
+    padding 0.5s ease,
+    background-color 0.5s ease,
+    box-shadow 0.6s ease,
+    color 0.4s ease,
+    border-color 0.5s ease,
+    min-height 0.6s ease;
+}
+
+footer p,
+footer .brand-line,
+footer .hit-counter,
+footer #toggleRetro {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Fade & slide animation when retro toggles */
+html.retro-off footer p,
+html.retro-off footer .brand-line,
+html.retro-off footer .hit-counter,
+html.retro-off footer #toggleRetro {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-typewriter]::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  margin-left: 3px;
+  color: #00FF00;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+[data-typewriter]::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  margin-left: 3px;
+  color: #00FF00;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}

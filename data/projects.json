@@ -1,0 +1,36 @@
+[
+  {
+    "title": "🎥 Finishing What I Started — Lime Connect Submission",
+    "description": "A personal video project for the Lime Connect 'In the Limelight' contest. Edited and color-corrected entirely in CapCut as a test of focus and persistence.",
+    "tags": ["video", "storytelling", "CapCut"],
+    "links": [
+      { "label": "Watch on YouTube »", "url": "https://www.youtube.com/watch?v=z34wyIlcdUw" },
+      { "label": "Read Project Write-Up »", "url": "/portfolio/finishing-what-i-started.html" }
+    ],
+    "embed": "https://www.youtube.com/embed/z34wyIlcdUw"
+  },
+  {
+    "title": "💻 MSI GE62 Teardown & Upgrade",
+    "description": "A full teardown and upgrade of an MSI GE62 Apache Pro laptop, including LCD, keyboard, RAM, SSD, and repaste of CPU/GPU.",
+    "tags": ["hardware", "repair", "build"],
+    "links": [
+      { "label": "View Project Page »", "url": "/portfolio/msi-teardown.html" }
+    ]
+  },
+  {
+    "title": "🏙️ State Website Project",
+    "description": "Built an informational website for a U.S. state using structured HTML, CSS, and JavaScript, focusing on layout, accessibility, and interactivity.",
+    "tags": ["webdev", "HTML", "CSS", "JavaScript"],
+    "links": [
+      { "label": "View Live Site »", "url": "/wgu/state-site/index.html" }
+    ]
+  },
+  {
+    "title": "🌐 Personal Portfolio Site",
+    "description": "A responsive portfolio site built with HTML, CSS, and JavaScript to showcase my work and style.",
+    "tags": ["portfolio", "responsive", "design"],
+    "links": [
+      { "label": "View Live Site »", "url": "/wgu/portfolio/index.html" }
+    ]
+  }
+]

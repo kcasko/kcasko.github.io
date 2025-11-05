@@ -1,33 +1,60 @@
-// functions/api/get-entries.js
+// ================================================
+// TaurusTech Guestbook API — Get Approved Entries
+// Fetches approved guestbook entries from KV storage
+// ================================================
 
 export async function onRequestGet({ env }) {
   try {
-    // List all keys in the namespace
-    const list = await env.GUESTBOOK_KV.list();
-    const keys = list.keys;
+    // Validate KV binding
+    if (!env.GUESTBOOK_KV) {
+      throw new Error("Missing GUESTBOOK_KV binding in environment");
+    }
 
-    // Get all values concurrently
-    const promises = keys.map(key => env.GUESTBOOK_KV.get(key.name, { type: 'json' }));
-    const values = await Promise.all(promises);
+    // List keys in the namespace
+    const { keys } = await env.GUESTBOOK_KV.list();
 
-    // Filter for approved entries and ensure they are valid objects
-    const approvedEntries = values
-      .filter(entry => entry && entry.status === 'approved') // <<< ONLY GET APPROVED
-      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Sort newest first
+    if (!keys || keys.length === 0) {
+      return new Response(JSON.stringify([]), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "public, max-age=30"
+        }
+      });
+    }
 
-    return new Response(JSON.stringify(approvedEntries), {
+    // Fetch all entries concurrently
+    const results = await Promise.allSettled(
+      keys.map(k => env.GUESTBOOK_KV.get(k.name, { type: "json" }))
+    );
+
+    // Extract valid JSON values only
+    const entries = results
+      .filter(r => r.status === "fulfilled" && r.value)
+      .map(r => r.value);
+
+    // Filter for approved entries
+    const approvedEntries = entries
+      .filter(e => e.status === "approved")
+      .sort((a, b) => {
+        const tA = new Date(a.timestamp || 0);
+        const tB = new Date(b.timestamp || 0);
+        return tB - tA; // newest first
+      });
+
+    return new Response(JSON.stringify(approvedEntries, null, 2), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=60' // Cache for 60 seconds
-        },
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=60, stale-while-revalidate=30"
+      }
     });
 
   } catch (error) {
-    console.error("Error getting entries:", error);
-    return new Response(JSON.stringify({ error: 'Failed to fetch entries' }), {
+    console.error("❌ Guestbook get-entries error:", error);
+    return new Response(JSON.stringify({ error: "Failed to fetch entries" }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" }
     });
   }
 }
