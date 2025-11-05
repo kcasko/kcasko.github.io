@@ -1,7 +1,7 @@
 // ==========================================================
 // TaurusTech Core.js — Clean Modern Version (Finalized)
 // Handles layout injection, navigation highlighting,
-// hit counter initialization, and footer date logic
+// visits counter initialization, and footer date logic
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   initLastUpdatedDate();
 });
 
-// ===== Load modular header, nav, and footer =====
 async function loadLayout() {
   try {
-    // ✅ Safe prefix calculation (handles root + subdirectories)
+    // ✅ Safe prefix for root + subdirectories
     const depth = Math.max(0, window.location.pathname.split("/").filter(Boolean).length - 1);
     const prefix = depth > 0 ? "../".repeat(depth) : "./";
 
@@ -31,24 +30,22 @@ async function loadLayout() {
       })
     );
 
-    // Inject modular layout
     document.getElementById("site-header")?.insertAdjacentHTML("afterbegin", headerHTML);
     document.getElementById("site-nav")?.insertAdjacentHTML("afterbegin", navHTML);
     document.getElementById("site-footer")?.insertAdjacentHTML("afterbegin", footerHTML);
 
-    // ✅ Load hit counter script AFTER footer is injected
-    const hitCounterScript = document.createElement("script");
-    hitCounterScript.src = `${prefix}js/hitcounter.js`;
-    hitCounterScript.onload = () => console.log("✅ Hit counter script loaded successfully.");
-    hitCounterScript.onerror = (e) => console.error("❌ Failed to load hit counter script:", e);
-    document.body.appendChild(hitCounterScript);
+    // ✅ Load visits script AFTER footer is injected (avoid "hitcounter" keyword)
+    const visitsScript = document.createElement("script");
+    visitsScript.src = `${prefix}js/visits.js?v=20251105`;
+    visitsScript.onload = () => console.log("✅ visits.js loaded");
+    visitsScript.onerror = (e) => console.error("❌ Failed to load visits.js:", e);
+    document.body.appendChild(visitsScript);
 
   } catch (err) {
     console.error("❌ Layout load error:", err);
   }
 }
 
-// ===== Highlight active nav link =====
 function highlightActiveLink() {
   const currentPath = window.location.pathname.replace(/\/$/, "");
   document.querySelectorAll("nav a").forEach(link => {
@@ -61,21 +58,14 @@ function highlightActiveLink() {
   });
 }
 
-// ===== Initialize Footer "Last Updated" =====
 function initLastUpdatedDate() {
   const observer = new MutationObserver(() => {
     const lastUpdated = document.getElementById("last-updated-date");
     if (lastUpdated && !lastUpdated.dataset.bound) {
       lastUpdated.dataset.bound = "true";
-      const modified = document.lastModified
-        ? new Date(document.lastModified)
-        : null;
+      const modified = document.lastModified ? new Date(document.lastModified) : null;
       lastUpdated.textContent = modified
-        ? modified.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-          })
+        ? modified.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
         : "Date unavailable";
       observer.disconnect();
     }
