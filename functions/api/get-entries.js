@@ -1,9 +1,8 @@
 // ================================================
-// TaurusTech Guestbook API — Get Approved Entries
-// Fetches approved guestbook entries from KV storage
+// TaurusTech Guestbook API — Get Approved Entries (CORS-Safe Final)
 // ================================================
-// ===== TaurusTech Global CORS Utility =====
 
+// ===== TaurusTech Global CORS Utility =====
 function getCorsHeaders(request) {
   const origin = request.headers.get("Origin");
   const allowed = [
@@ -22,20 +21,19 @@ function getCorsHeaders(request) {
   };
 }
 
-export async function onRequestGet({ env }) {
+export async function onRequestGet({ request, env }) {
   try {
-    // Validate KV binding
-    if (!env.GUESTBOOK_KV) {
+    if (!env.GUESTBOOK_KV)
       throw new Error("Missing GUESTBOOK_KV binding in environment");
-    }
 
-    // List keys in the namespace
+    // List all keys in the KV namespace
     const { keys } = await env.GUESTBOOK_KV.list();
 
     if (!keys || keys.length === 0) {
       return new Response(JSON.stringify([]), {
         status: 200,
         headers: {
+          ...getCorsHeaders(request),
           "Content-Type": "application/json",
           "Cache-Control": "public, max-age=30"
         }
@@ -44,36 +42,44 @@ export async function onRequestGet({ env }) {
 
     // Fetch all entries concurrently
     const results = await Promise.allSettled(
-      keys.map(k => env.GUESTBOOK_KV.get(k.name, { type: "json" }))
+      keys.map((k) => env.GUESTBOOK_KV.get(k.name, { type: "json" }))
     );
 
-    // Extract valid JSON values only
+    // Extract only valid JSON entries
     const entries = results
-      .filter(r => r.status === "fulfilled" && r.value)
-      .map(r => r.value);
+      .filter((r) => r.status === "fulfilled" && r.value)
+      .map((r) => r.value);
 
-    // Filter for approved entries
+    // Filter for approved entries and sort newest first
     const approvedEntries = entries
-      .filter(e => e.status === "approved")
+      .filter((e) => e.status === "approved")
       .sort((a, b) => {
         const tA = new Date(a.timestamp || 0);
         const tB = new Date(b.timestamp || 0);
-        return tB - tA; // newest first
+        return tB - tA;
       });
 
     return new Response(JSON.stringify(approvedEntries, null, 2), {
       status: 200,
       headers: {
+        ...getCorsHeaders(request),
         "Content-Type": "application/json",
         "Cache-Control": "public, max-age=60, stale-while-revalidate=30"
       }
     });
-
   } catch (error) {
     console.error("❌ Guestbook get-entries error:", error);
     return new Response(JSON.stringify({ error: "Failed to fetch entries" }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { ...getCorsHeaders(request), "Content-Type": "application/json" }
     });
   }
+}
+
+// ===== Preflight Handler =====
+export async function onRequestOptions({ request }) {
+  return new Response(null, {
+    status: 204,
+    headers: getCorsHeaders(request)
+  });
 }

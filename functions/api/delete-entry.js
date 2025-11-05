@@ -1,3 +1,7 @@
+// ================================================
+// TaurusTech Guestbook API — Delete Entry (CORS-Safe Final)
+// ================================================
+
 // ===== TaurusTech Global CORS Utility =====
 function getCorsHeaders(request) {
   const origin = request.headers.get("Origin");
@@ -23,31 +27,52 @@ export async function onRequestPost({ request, env }) {
       throw new Error("Missing environment bindings");
 
     const key = request.headers.get("X-Guestbook-Key");
-    if (key !== env.GUESTBOOK_ADMIN_KEY)
-      return new Response(JSON.stringify({ success: false, message: "Unauthorized" }), {
-        status: 403,
-        headers: { "Content-Type": "application/json" },
-      });
+    if (key !== env.GUESTBOOK_ADMIN_KEY) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Unauthorized" }),
+        {
+          status: 403,
+          headers: { ...getCorsHeaders(request), "Content-Type": "application/json" }
+        }
+      );
+    }
 
     const { id } = await request.json();
-    if (!id)
-      return new Response(JSON.stringify({ success: false, message: "Missing entry ID." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+    if (!id) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Missing entry ID." }),
+        {
+          status: 400,
+          headers: { ...getCorsHeaders(request), "Content-Type": "application/json" }
+        }
+      );
+    }
 
     await env.GUESTBOOK_KV.delete(`entry:${id}`);
 
-    return new Response(JSON.stringify({ success: true, message: "Entry deleted." }), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://taurustech.me",
-      },
-    });
+    return new Response(
+      JSON.stringify({ success: true, message: "Entry deleted." }),
+      {
+        status: 200,
+        headers: { ...getCorsHeaders(request), "Content-Type": "application/json" }
+      }
+    );
   } catch (error) {
-    return new Response(JSON.stringify({ success: false, message: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    console.error("❌ Error deleting entry:", error);
+    return new Response(
+      JSON.stringify({ success: false, message: error.message }),
+      {
+        status: 500,
+        headers: { ...getCorsHeaders(request), "Content-Type": "application/json" }
+      }
+    );
   }
+}
+
+// ===== Preflight Handler =====
+export async function onRequestOptions({ request }) {
+  return new Response(null, {
+    status: 204,
+    headers: getCorsHeaders(request)
+  });
 }
