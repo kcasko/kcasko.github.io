@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (cached) counterElement.textContent = cached;
 
     // Fetch the fresh count from your Cloudflare Worker
-    const res = await fetch("https://hit-counter.keezay.workers.dev/");
+    const res = await fetch("https://taurustech.me/api/hitcounter");
     if (!res.ok) throw new Error("Failed to fetch counter");
 
     const data = await res.json();
