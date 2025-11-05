@@ -1,37 +1,55 @@
 // === TaurusTech Visits Tracker ===
-// Powered by Cloudflare Workers
+// Powered by Cloudflare Workers (api/visits)
 
-// small global flag to confirm load
 window.__tt_visits_loaded = true;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const el = document.getElementById("visitorCount");
   if (!el) {
-    console.warn("⚠️ visitorCount element not found — visits script exiting.");
+    console.warn("[TaurusTech] visitorCount element not found, exiting.");
     return;
   }
 
-  try {
-    const cacheKey = "taurustech_visits";
-    const cached = localStorage.getItem(cacheKey);
+  const cacheKey = "taurustech_visits";
+  const cached = localStorage.getItem(cacheKey);
 
-    // Show cached value immediately for snappy UX
-    if (cached) el.textContent = cached;
+  // Show cached value instantly for smoother UX
+  if (cached) el.textContent = cached;
 
-    // Fetch the fresh count from Cloudflare Worker
-    const res = await fetch("https://taurustech.me/api/visits", { credentials: "include" });
-    if (!res.ok) throw new Error(`Bad response: ${res.status}`);
-
-    const data = await res.json();
-    const formatted = Number(data.visits || 0).toLocaleString();
-
-    // Update display and cache locally
+  // Helper: safely update counter
+  const updateDisplay = (count) => {
+    const formatted = Number(count || 0).toLocaleString();
     el.textContent = formatted;
     localStorage.setItem(cacheKey, formatted);
+  };
 
-    console.log(`✅ Visits updated: ${formatted}`);
-  } catch (err) {
-    console.error("❌ Visits fetch error:", err);
-    el.textContent = "N/A";
+  // Fetch logic with fallback + retry
+  async function fetchVisits(retry = false) {
+    try {
+      const res = await fetch("https://taurustech.me/api/visits", {
+        credentials: "include",
+        headers: { "Accept": "application/json" },
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+      if (!data || typeof data.visits === "undefined")
+        throw new Error("Invalid response shape");
+
+      updateDisplay(data.visits);
+      console.log(`[TaurusTech] Visits updated → ${data.visits}`);
+    } catch (err) {
+      console.warn(`[TaurusTech] Visit fetch error: ${err.message}`);
+      if (!retry) {
+        console.log("[TaurusTech] Retrying once in 2s...");
+        setTimeout(() => fetchVisits(true), 2000);
+      } else {
+        el.textContent = "N/A";
+      }
+    }
   }
+
+  // Start fetch
+  fetchVisits();
 });
