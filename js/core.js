@@ -1,7 +1,7 @@
 // ==========================================================
-// TaurusTech Core.js — Clean Modern Version
+// TaurusTech Core.js — Clean Modern Version (Finalized)
 // Handles layout injection, navigation highlighting,
-// and footer date initialization
+// hit counter initialization, and footer date logic
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ===== Load modular header, nav, and footer =====
 async function loadLayout() {
   try {
-    const depth = window.location.pathname.split("/").filter(Boolean).length - 1;
+    // ✅ Safe prefix calculation (handles root + subdirectories)
+    const depth = Math.max(0, window.location.pathname.split("/").filter(Boolean).length - 1);
     const prefix = depth > 0 ? "../".repeat(depth) : "./";
 
     const paths = [
@@ -38,7 +39,7 @@ async function loadLayout() {
     // ✅ Load hit counter script AFTER footer is injected
     const hitCounterScript = document.createElement("script");
     hitCounterScript.src = `${prefix}js/hitcounter.js`;
-    hitCounterScript.onload = () => console.log("Hit counter script loaded successfully.");
+    hitCounterScript.onload = () => console.log("✅ Hit counter script loaded successfully.");
     hitCounterScript.onerror = (e) => console.error("❌ Failed to load hit counter script:", e);
     document.body.appendChild(hitCounterScript);
 
