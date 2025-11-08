@@ -37,7 +37,7 @@ async function fetchPendingEntries() {
   container.innerHTML = `<p>Loading pending entries...</p>`;
 
   try {
-    const res = await fetch("https://taurustech.me/api/get-pending-entries", {
+    const res = await fetch(`${location.origin}/api/get-pending-entries`, {
       headers: { "Accept": "application/json" },
     });
 
@@ -99,7 +99,7 @@ async function handleEntryAction(id, action) {
       return;
     }
 
-    const res = await fetch(`https://taurustech.me/api/${action}-entry`, {
+    const res = await fetch(`${location.origin}/api/${action}-entry`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
