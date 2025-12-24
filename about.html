@@ -24,68 +24,53 @@
     <main>
       <h2>About Me :: Keith Casko</h2>
 
-      <p>Hey there, welcome to TaurusTech! I'm Keith, the person behind this little corner of the web. If you're wondering about the retro theme, I grew up with the dial-up sounds and pixelated screens of the 80s and 90s, and they definitely left an impression.</p>
+      <p>Welcome to TaurusTech. This is my workshop on the web.</p>
+
+      <p>I grew up in the era of dial up modems, CRT monitors, and software that came with manuals thicker than a phone book. Those early years left a permanent mark. I like systems that make sense, tools that do real work, and technology you can actually understand instead of just clicking through.</p>
 
       <h3>From Baker to Builder</h3>
-      <p>My path into technology hasn’t been exactly linear. For over 20 years, my world revolved around baking: precision, process, and making sure everything came together just right. While I enjoyed that craft, a long-held fascination with technology kept calling.</p>
-      <p>I realized that many skills from baking, such as meticulous problem-solving, optimizing workflows, analytical thinking, and attention to detail, translate surprisingly well to the tech world. I decided to make the leap and pursue my passion for building and understanding systems.</p>
+
+      <p>For over twenty years, I worked in professional baking. That world runs on precision, timing, repetition, and problem solving under pressure. If one variable is off, everything downstream breaks.</p>
+
+      <p>Over time, I realized that the skills I relied on every day were already technical. Optimizing workflows, fixing broken processes, and producing consistent results from complex systems. Eventually it became obvious that I was thinking like an engineer. I just needed to change the tools.</p>
 
       <hr class="fancy-hr" />
 
-      <h3>Forging a New Path in Tech</h3>
-      <p>Now I’m channeling that energy into my studies as a <strong>Bachelor of Science in Software Engineering student at Western Governors University (WGU)</strong>, aiming for graduation around 2029. It’s been an exciting journey covering everything from programming fundamentals to system administration.</p>
+      <h3>Building Systems, Not Just Code</h3>
 
-      <h4>My Tech Toolkit (Actively Expanding)</h4>
-      <p>I’m building skills across several domains:</p>
-      <ul>
-        <li><strong>Programming:</strong> Learning Python for scripting and automation, and Bash for system tasks.</li>
-        <li><strong>Systems & Networking:</strong> Working with Windows Server 2022 (including Active Directory setup), Linux distributions like Ubuntu and Kali, and gaining a stronger understanding of network fundamentals.</li>
-        <li><strong>Tools & Concepts:</strong> Using VirtualBox and VMware for virtualization, Git for version control, VS Code for development, and applying software engineering principles to real-world projects.</li>
-      </ul>
+      <p>I am currently pursuing a <strong>Bachelor of Science in Software Engineering at Western Governors University</strong>, with a target graduation around 2029. My focus is not just writing code, but understanding how systems fit together from the hardware up through the operating system, network, and application layer.</p>
 
-      <h3>Hands-On: The Home Lab Experience</h3>
-      <p>Theory is one thing, but I learn best by doing. I run a home lab environment where I can experiment, test, and troubleshoot:</p>
-      <ul>
-        <li>Setting up and managing a full Windows Server 2022 domain with Active Directory, users, and group policies.</li>
-        <li>Running a dual-boot setup (Windows 11 and Ubuntu) with virtual machines for testing and security practice.</li>
-        <li>Writing Python scripts for practical automation and file management.</li>
-        <li>Constantly improving network configurations and refining system setups through hands-on troubleshooting.</li>
-      </ul>
-      <p>It’s my sandbox for applying what I learn and exploring new technologies.</p>
+      <p>I learn by breaking things, fixing them, and rebuilding them better.</p>
+
+      <h3>What I Work With</h3>
+
+      <p>My current focus includes Python for scripting and automation, Bash for system tasks, and hands on systems administration. I actively work with Windows Server 2022 including Active Directory and Group Policy, Linux environments like Ubuntu and Kali, virtualization using VirtualBox and VMware, and modern development tools such as Git and VS Code.</p>
+
+      <p>This site documents that work. The wins, the failures, and everything in between.</p>
 
       <hr class="fancy-hr" />
 
-      <h3>Future Focus: Cybersecurity</h3>
-      <p>While I’m currently focused on software engineering, my long-term goal leans strongly toward <strong>cybersecurity</strong>. Understanding how systems are built is essential for learning how to protect them. My experience with server administration, networking, and different operating systems, especially Kali Linux in the lab, is all building toward that goal. I plan to pursue certifications like CompTIA A+ and Google IT Support to strengthen my foundational knowledge.</p>
+      <h3>The Home Lab</h3>
+
+      <p>Most of my learning happens in a home lab where theory meets reality. I run a Windows Server domain from scratch, manage users and policies, maintain dual boot and virtualized environments, and write scripts to automate real problems.</p>
+
+      <p>It is my proving ground for troubleshooting, experimentation, and deep system understanding.</p>
+
+      <hr class="fancy-hr" />
+
+      <h3>Long Term Direction</h3>
+
+      <p>While software engineering is my current academic path, my long term focus is cybersecurity. You cannot defend systems you do not understand. Everything I am building now lays the groundwork for that direction, from operating systems to networking to security focused tooling.</p>
+
+      <p>TaurusTech exists to document that journey and to build useful things along the way.</p>
+
+      <p>If you are into systems, learning by doing, and understanding how things actually work under the hood, you are in the right place.</p>
+
+      <p><em>Last updated December 23, 2025</em></p>
     </main>
 
     <!-- Modular footer -->
     <div id="site-footer"></div>
   </div>
-
-  <!-- Typewriter script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const elements = document.querySelectorAll("[data-typewriter]");
-      elements.forEach(el => {
-        const text = el.getAttribute("data-typewriter");
-        const speed = parseInt(el.getAttribute("data-speed") || "50", 10);
-        const delay = parseInt(el.getAttribute("data-delay") || "0", 10);
-
-        if (el.dataset.typed === "true") return;
-        el.dataset.typed = "true";
-        el.textContent = "";
-
-        setTimeout(() => {
-          let i = 0;
-          const interval = setInterval(() => {
-            el.textContent = text.substring(0, i + 1);
-            i++;
-            if (i >= text.length) clearInterval(interval);
-          }, speed);
-        }, delay);
-      });
-    });
-  </script>
 </body>
 </html>
