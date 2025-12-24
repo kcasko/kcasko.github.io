@@ -29,10 +29,11 @@
     <hr class="fancy-hr">
 
     <main>
-      <h2>Home Lab Log :: The Digital Playground</h2>
+      <h2>Home Lab Log :: Systems in Motion</h2>
 
-      <p>Welcome to the nerve center of TaurusTech! This page documents my ongoing home lab setup. It's my space for hands-on learning, experimentation, breaking things, and (hopefully) fixing them. This ties directly into my WGU Software Engineering studies and my goal of moving into cybersecurity.</p>
-      <p>Consider this a living document tracking hardware, software, configurations, and the inevitable troubleshooting adventures.</p>
+      <p>This page documents my active home lab. This is where theory turns into configuration files, broken services, and eventually working systems. Everything here is hands-on and continuously evolving.</p>
+
+      <p>The lab supports my WGU Software Engineering coursework and long-term focus on systems administration and cybersecurity.</p>
 
       <hr class="fancy-hr" />
 
@@ -40,128 +41,101 @@
       <div class="lab-section">
         <h4>Lenovo Ideapad 1</h4>
         <ul>
-          <li><strong>Specs:</strong> Intel Celeron N4500 (2 cores), 20 GB RAM</li>
-          <li><strong>Purpose:</strong> Main daily driver, Dual-boot Windows 11 Pro / Ubuntu. Initial VirtualBox host.</li>
-          <li><strong>Status:</strong> In Use</li>
-          <li><strong>Acquired:</strong> 03-14-2025</li>
+          <li><strong>Specs:</strong> Intel Celeron N4500, 20 GB RAM</li>
+          <li><strong>Role:</strong> Daily driver, dual-boot Windows 11 Pro / Ubuntu</li>
+          <li><strong>Status:</strong> In use</li>
         </ul>
 
-        <h4>Lenovo T430</h4>
+        <h4>Lenovo ThinkPad T430</h4>
         <ul>
-          <li><strong>Specs:</strong> Core i5 3320M @ 2.6 GHz, 8 GB RAM</li>
-          <li><strong>Purpose:</strong> Dedicated Proxmox Virtualization Host</li>
-          <li><strong>Status:</strong> In Use</li>
-          <li><strong>Acquired:</strong> 03-28-2025</li>
+          <li><strong>Specs:</strong> Intel i5-3320M, 8 GB RAM</li>
+          <li><strong>Role:</strong> Dedicated Proxmox virtualization host</li>
+          <li><strong>Status:</strong> In use</li>
         </ul>
       </div>
 
       <hr class="fancy-hr" />
 
-      <h3>Operating System Landscape</h3>
+      <h3>Virtualization Platform</h3>
       <div class="lab-section">
-        <h4>Physical Installs</h4>
         <ul>
-          <li><strong>Windows 11 Pro:</strong> Primary OS on Ideapad 1 (Dual-Boot). Used for daily tasks.</li>
-          <li><strong>Ubuntu Desktop:</strong> Secondary OS on Ideapad 1 (Dual-Boot). Used for Linux experiments and server management.</li>
-          <li><strong>Proxmox VE:</strong> Bare-metal install on Lenovo T430 with KDE Desktop. Main virtualization platform.</li>
-        </ul>
-        <h4>Current Virtual Machines (Hosted on Proxmox T430)</h4>
-        <ul>
-          <li><strong>Windows Server 2022 Standard:</strong> Main platform for AD, DNS, DHCP practice.</li>
-          <li><strong>Kali Linux:</strong> Security testing, penetration tools, network analysis.</li>
-          <li><strong>Windows 11 Pro (VM):</strong> Client machine for joining the AD domain (<code>k-tech.local</code>).</li>
-          <li><strong>Ubuntu Server (Planned):</strong> For hosting test web services and Docker containers.</li>
+          <li><strong>Platform:</strong> Proxmox VE (bare metal on T430)</li>
+          <li><strong>Networking:</strong> Bridged networking (vmbr0)</li>
+          <li><strong>Management:</strong> Web UI, SSH, Tailscale remote access</li>
+          <li><strong>Workflow:</strong> Snapshot driven changes before major configuration updates</li>
         </ul>
       </div>
 
       <hr class="fancy-hr" />
 
-      <h3>Key Services & Roles Under Development</h3>
+      <h3>Active Directory Environment</h3>
       <div class="lab-section">
         <ul>
-          <li><strong>Active Directory Domain Services (AD DS):</strong>
-            <ul>
-              <li><strong>Server:</strong> Windows Server 2022 (VM on Proxmox)</li>
-              <li><strong>Domain Name:</strong> <code>k-tech.local</code></li>
-              <li><strong>Status:</strong> In Progress – configuring Domain Controller, users, groups, and GPOs.</li>
-            </ul>
-          </li>
-          <li><strong>DNS / DHCP:</strong>
-            <ul>
-              <li><strong>Server:</strong> Windows Server 2022</li>
-              <li><strong>Status:</strong> Configured alongside AD setup.</li>
-            </ul>
-          </li>
-          <li><strong>Web Server (Test):</strong>
-            <ul>
-              <li><strong>Server:</strong> Ubuntu (Dual-boot, moving to VM later)</li>
-              <li><strong>Software:</strong> Apache</li>
-              <li><strong>Status:</strong> Basic setup running on Ubuntu.</li>
-            </ul>
-          </li>
-          <li><strong>SSH Access:</strong>
-            <ul>
-              <li><strong>Server:</strong> Proxmox Host + Ubuntu Installs</li>
-              <li><strong>Status:</strong> Enabled for remote management via terminal.</li>
-            </ul>
-          </li>
+          <li><strong>Domain Controller:</strong> TaurusDc</li>
+          <li><strong>OS:</strong> Windows Server 2022</li>
+          <li><strong>Services:</strong> AD DS, DNS, DHCP</li>
+          <li><strong>Domain:</strong> Internal lab domain</li>
+        </ul>
+
+        <h4>Directory Structure</h4>
+        <ul>
+          <li><strong>Groups:</strong> Admins, IT, Developers</li>
+          <li><strong>Users:</strong> Keith, Kristi, jdoe</li>
+          <li><strong>Policies:</strong> Group Policy testing for permissions, restrictions, and role separation</li>
+        </ul>
+
+        <p>Windows 11 Pro client VMs are joined to the domain and used to validate authentication, permissions, and policy enforcement.</p>
+      </div>
+
+      <hr class="fancy-hr" />
+
+      <h3>Operating Systems in Use</h3>
+      <div class="lab-section">
+        <ul>
+          <li><strong>Windows Server 2022:</strong> Domain services and infrastructure testing</li>
+          <li><strong>Windows 11 Pro:</strong> Domain-joined client testing</li>
+          <li><strong>Ubuntu Desktop:</strong> Linux experimentation and administration</li>
+          <li><strong>Kali Linux:</strong> Security tooling, enumeration, and lab-safe testing</li>
         </ul>
       </div>
 
       <hr class="fancy-hr" />
 
-      <h3>Networking Configuration Notes</h3>
+      <h3>Remote Access & Networking</h3>
       <div class="lab-section">
         <ul>
-          <li><strong>IP Scheme:</strong> Static IPs for servers; DHCP for clients via Windows Server.</li>
-          <li><strong>Firewalls:</strong> Windows Defender, UFW on Ubuntu, and Proxmox built-in firewall.</li>
-          <li><strong>Proxmox Networking:</strong> Web UI access configured; bridged VM network (vmbr0) in use.</li>
+          <li><strong>Tailscale:</strong> Secure remote access to Proxmox host and VMs</li>
+          <li><strong>RDP:</strong> Windows Server and client administration</li>
+          <li><strong>SSH:</strong> Linux systems and Proxmox management</li>
+          <li><strong>Firewalls:</strong> Windows Defender Firewall, UFW, Proxmox firewall rules</li>
         </ul>
       </div>
 
       <hr class="fancy-hr" />
 
-      <h3>Virtualization Environment: Proxmox Focus</h3>
-      <div class="lab-section">
-        <h4>Host: Lenovo T430</h4>
-        <ul>
-          <li><strong>Platform:</strong> Proxmox VE (latest) with KDE Desktop.</li>
-          <li><strong>Management:</strong> Web UI and SSH.</li>
-        </ul>
-        <h4>Key VM Configurations & Tasks:</h4>
-        <ul>
-          <li><strong>Windows Server 2022:</strong> 4 GB RAM, 2 cores, 50 GB disk – AD DS, DNS, DHCP.</li>
-          <li><strong>Kali Linux:</strong> 2 GB RAM, 1 core, 30 GB disk – security testing.</li>
-          <li><strong>Windows 11 Pro Client:</strong> Joined to <code>k-tech.local</code> domain for GPO testing.</li>
-        </ul>
-        <p><em>Using snapshots before major configuration changes and exploring Proxmox storage options (local LVM).</em></p>
-      </div>
-
-      <hr class="fancy-hr" />
-
-      <h3>Progress Logs & Troubleshooting Notes</h3>
+      <h3>Recent Progress & Fixes</h3>
       <div class="lab-section">
         <ul>
-          <li><strong>[Ongoing] AD DS Setup:</strong> DNS resolution issues resolved via static forwarders; fine-tuning GPOs.</li>
-          <li><strong>[Resolved] Proxmox Host Networking:</strong> Wi-Fi stability fixed with Network Manager.</li>
-          <li><strong>[Ongoing] VM Connectivity:</strong> RDP access testing; SSH connections stable.</li>
-          <li><strong>[Planned] Security Testing:</strong> Use Kali for internal scan and vulnerability checks once core services are stable.</li>
+          <li><strong>Resolved:</strong> Domain join and authentication issues caused by DNS misconfiguration</li>
+          <li><strong>Resolved:</strong> RDP permission failures through correct group membership</li>
+          <li><strong>Resolved:</strong> Proxmox and VM connectivity over Tailscale</li>
+          <li><strong>Ongoing:</strong> Group Policy refinement and user restriction testing</li>
         </ul>
       </div>
 
       <hr class="fancy-hr" />
 
-      <h3>Learning & Next Steps</h3>
+      <h3>Next Steps</h3>
       <div class="lab-section">
-        <p>This lab is constantly evolving as I learn. Key takeaways so far involve the critical interplay between AD, DNS, and DHCP, and the importance of methodical troubleshooting.</p>
-        <h4>Immediate Goals:</h4>
         <ul>
-          <li>Fully configure DHCP scope on Windows Server 2022.</li>
-          <li>Create standard user accounts and test GPO restrictions.</li>
-          <li>Deploy Ubuntu Server VM on Proxmox and experiment with Docker.</li>
-          <li>Explore Proxmox LXC containers.</li>
-          <li>Begin basic Kali security scans against the domain.</li>
+          <li>Expand GPO testing for security hardening</li>
+          <li>Deploy Ubuntu Server VM for services and containers</li>
+          <li>Introduce Docker workloads</li>
+          <li>Begin controlled internal security scanning using Kali</li>
+          <li>Continue documenting failures and fixes</li>
         </ul>
+
+        <p>This lab is not about perfection. It is about understanding how systems actually fail and how to bring them back.</p>
       </div>
     </main>
 
