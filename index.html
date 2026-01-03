@@ -17,16 +17,15 @@
   <meta name="twitter:description" content="Personal workshop for software engineering, systems administration, and cybersecurity projects">
   <meta name="twitter:image" content="https://taurustech.me/images/hero.png">
 
-  <!-- PWA Manifest -->
+  <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/images/hero.png">
-  
-  <!-- Theme colors loaded conditionally by script -->
+
   <meta name="msapplication-TileColor" content="#a56cff">
   <meta name="msapplication-navbutton-color" content="#a56cff">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-  <!-- CSS Custom Properties for theme consistency -->
+
+  <!-- Theme variables -->
   <style>
     :root {
       --theme-color: #a56cff;
@@ -34,10 +33,9 @@
     }
   </style>
 
-  <!-- Resource hints for performance -->
   <link rel="preconnect" href="https://taurustech.me">
-  
-  <!-- Instantly apply saved retro state -->
+
+  <!-- Retro mode state -->
   <script>
     (function() {
       const mode = localStorage.getItem("retroMode");
@@ -45,7 +43,7 @@
     })();
   </script>
 
-  <!-- Core + Retro styles -->
+  <!-- Core styles -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
@@ -53,14 +51,14 @@
   <script src="/js/theme-polyfill.js"></script>
   <script defer src="/js/core.js"></script>
   <script defer src="/js/typewriter.js"></script>
-  
-  <!-- Service Worker Registration -->
+
+  <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
-          .then(registration => console.log('SW registered:', registration))
-          .catch(registrationError => console.log('SW registration failed:', registrationError));
+          .then(reg => console.log('SW registered:', reg))
+          .catch(err => console.log('SW registration failed:', err));
       });
     }
   </script>
@@ -68,43 +66,67 @@
 
 <body>
   <div class="container">
+
     <!-- Auto-loaded partials -->
     <div id="site-header"></div>
     <div id="site-nav"></div>
+
     <hr class="fancy-hr">
 
     <main>
       <h2>Welcome to TaurusTech</h2>
 
-      <p>This is my workshop on the web. TaurusTech exists to document what I am building, breaking, and learning as I move deeper into software engineering, systems administration, and cybersecurity.</p>
+      <p>
+        This is my workshop on the web. TaurusTech exists to document what I am
+        building, breaking, and learning as I move deeper into software
+        engineering, systems administration, and cybersecurity.
+      </p>
 
-      <p>I grew up alongside the early internet. Dial up tones, CRT monitors, and software that demanded you understand it instead of just tapping buttons. That mindset stuck. I care about how systems work under the hood, not just how they look on the surface.</p>
+      <p>
+        I grew up alongside the early internet. Dial-up tones, CRT monitors,
+        and software that expected you to understand it instead of just tapping
+        buttons. That mindset stuck. I care about how systems work under the hood,
+        not just how they look on the surface.
+      </p>
 
-      <p>Here you will find project write ups, home lab experiments, WGU coursework notes, and tools I am actively developing. Nothing here is theoretical. If it is listed, it has been built, tested, or broken at least once.</p>
+      <p>
+        Here you will find project documentation, home lab experiments, WGU
+        coursework notes, and tools I am actively developing. Nothing here is
+        theoretical. If it is listed, it has been built, tested, or broken at
+        least once.
+      </p>
+
+      <!-- WEBSITE DEMO CALLOUT -->
+      <section class="demo-callout">
+        <h3>Website Demos for Local Businesses</h3>
+
+        <p>
+          I also design and build fast, mobile-first websites for local businesses.
+          Below is a showroom of live website demos showing how service-based
+          businesses turn visitors into calls.
+        </p>
+
+        <a
+          class="cta"
+          href="https://demos.taurustech.me"
+          target="_blank">
+          View website demo showroom
+        </a>
+      </section>
 
       <div class="construction-zone">
-        <img src="/images/under-construction.gif" alt="Under Construction GIF">
+        <img src="/images/under-construction.gif" alt="Under Construction">
         <p><em>This site is always evolving. Stable enough to use. Never finished.</em></p>
       </div>
 
-      <h3>Current Focus</h3>
-
-      <section id="now" class="now-section">
-        <div class="update-item">
-          <p>
-            <span class="update-highlight">📚 Currently working on</span>
-            <strong>Data Structures and Algorithms</strong> at
-            <strong>Western Governors University</strong>, while building
-            <strong>DiagnOStiX v1.0</strong>, a custom Linux based diagnostic toolkit for system analysis, troubleshooting, and hardware validation.
-          </p>
-          <p class="update-date">December 2025</p>
-        </div>
-      </section>
-
-      <p>If you are interested in systems, learning by doing, and understanding technology beyond surface level tutorials, you are in the right place.</p>
+      <p>
+        If you are interested in systems, learning by doing, and understanding
+        technology beyond surface level tutorials, you are in the right place.
+      </p>
     </main>
 
     <hr class="fancy-hr">
+
     <div id="site-footer"></div>
   </div>
 </body>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DiagnostiX – a Linux-based system diagnostics project documented at TaurusTech" />
+  <title>DiagnostiX :: TaurusTech</title>
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="DiagnostiX - System Diagnostics Project">
+  <meta property="og:description" content="Video walkthrough and documentation of DiagnostiX, a custom Linux-based diagnostics environment">
+  <meta property="og:image" content="https://taurustech.me/images/hero.png">
+  <meta property="og:url" content="https://taurustech.me/projects/diagnostix.html">
+  <meta property="og:type" content="website">
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+
+  <!-- Apply saved retro state -->
+  <script>
+    (function() {
+      const mode = localStorage.getItem("retroMode");
+      if (mode === "off") document.documentElement.classList.add("retro-off");
+    })();
+  </script>
+
+  <!-- Core scripts -->
+  <script defer src="/js/core.js"></script>
+  <script defer src="/js/typewriter.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Shared layout -->
+    <div id="site-header"></div>
+    <div id="site-nav"></div>
+    <hr class="fancy-hr" />
+
+    <main>
+
+      <!-- HERO -->
+      <section class="project-hero">
+        <h2>DIAGNOSTIX</h2>
+        <p>
+          A documented exploration of Linux-based system diagnostics, tooling,
+          and troubleshooting workflows.
+        </p>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <!-- OVERVIEW -->
+      <section class="project-section">
+        <h3>Project Overview</h3>
+
+        <p>
+          DiagnostiX is a custom Linux-based diagnostic environment created as a
+          hands-on exploration of system analysis, troubleshooting, and tooling
+          integration. The goal was not to produce a commercial product, but to
+          deepen understanding of how diagnostic tools interact with hardware,
+          operating systems, and real-world failure scenarios.
+        </p>
+
+        <p>
+          This page documents DiagnostiX in a stable, working state. Active development is currently paused while I focus on other priorities, but the project remains viable and is planned to continue when time and focus allow.
+        </p>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <!-- VIDEO DEMO -->
+      <section class="project-section">
+        <h3>Video Walkthrough</h3>
+
+        <p>
+          The following video demonstrates DiagnostiX in use, including system
+          inspection, diagnostic workflows, and the overall environment design.
+        </p>
+
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/6sHkzuFEcMA"
+            title="DiagnostiX System Diagnostics Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <!-- WHAT IT EXPLORED -->
+      <section class="project-section">
+        <h3>What This Project Explored</h3>
+
+        <ul>
+          <li>Linux system inspection and hardware identification</li>
+          <li>Disk, memory, and process diagnostics</li>
+          <li>Command-line tooling and workflow design</li>
+          <li>Bootable environments and recovery use cases</li>
+          <li>Practical troubleshooting methodology</li>
+        </ul>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <!-- CONTEXT -->
+      <section class="project-section">
+        <h3>Context</h3>
+
+        <p>
+          DiagnostiX represents a point in my technical journey where I was
+          focused on understanding systems from the inside out. It sits alongside
+          my home lab work, website development, and infrastructure experiments
+          as part of a broader systems-first learning approach.
+        </p>
+      </section>
+
+      <hr class="fancy-hr" />
+
+      <!-- BACK LINK -->
+      <section class="project-section">
+        <a href="/projects.html" class="cta">
+          ← Back to Projects Archive
+        </a>
+      </section>
+
+    </main>
+
+    <hr class="fancy-hr" />
+    <div id="site-footer"></div>
+  </div>
+</body>
+</html>
