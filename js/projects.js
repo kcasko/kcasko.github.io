@@ -148,8 +148,7 @@ function renderProjects() {
 
     const embedHTML = proj.embed
       ? `<div class="video-embed">
-          <iframe data-src="${proj.embed}" 
-            class="lazy-iframe"
+          <iframe src="${proj.embed}" 
             width="100%" height="405"
             style="max-width:720px;border:none;border-radius:12px;"
             title="${proj.title}"
