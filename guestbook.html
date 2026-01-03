@@ -63,6 +63,11 @@
           <label for="guestbookMessage">Message:</label>
           <textarea id="guestbookMessage" name="message" required rows="5" maxlength="500"></textarea>
         </div>
+        <!-- Honeypot field - hidden from users but visible to bots -->
+        <div style="position: absolute; left: -9999px;">
+          <label for="email">Email (leave blank):</label>
+          <input type="email" id="email" name="email" tabindex="-1" autocomplete="off" />
+        </div>
         <p id="guestbook-status" class="form-status"></p>
         <div class="form-group">
           <button type="submit" class="retro-button">Sign Guestbook</button>

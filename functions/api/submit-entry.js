@@ -11,6 +11,34 @@ function sanitize(input) {
     .trim();
 }
 
+// Spam detection
+function isSpam(name, message) {
+  const spamKeywords = [
+    'viagra', 'casino', 'lottery', 'winner', 'congratulations', 'bitcoin', 'crypto',
+    'investment', 'earn money', 'make money', 'click here', 'visit now', 'free money',
+    'limited time', 'act now', 'urgent', 'http://', 'https://', 'www.', '.com', '.net',
+    'telegram', 'whatsapp', 'contact me', 'email me'
+  ];
+  
+  const combined = (name + ' ' + message).toLowerCase();
+  return spamKeywords.some(keyword => combined.includes(keyword));
+}
+
+function isSuspiciousPattern(name, message) {
+  // Check for excessive repetition
+  if (/(.{3,})\1{3,}/.test(message)) return true;
+  
+  // Check for excessive caps
+  const capsRatio = (message.match(/[A-Z]/g) || []).length / message.length;
+  if (capsRatio > 0.5 && message.length > 10) return true;
+  
+  // Check for suspicious characters
+  const combined = (name + ' ' + message).toLowerCase();
+  if (/[^\w\s.,!?'"()-]/.test(combined)) return true;
+  
+  return false;
+}
+
 // ===== TaurusTech Global CORS Utility =====
 function getCorsHeaders(request) {
   const origin = request.headers.get("Origin");
@@ -38,6 +66,11 @@ export async function onRequestPost({ request, env }) {
     const formData = await request.formData();
     const name = sanitize(formData.get("name"));
     const message = sanitize(formData.get("message"));
+    const honeypot = formData.get("email"); // Honeypot field
+
+    // Honeypot check - if filled, it's likely a bot
+    if (honeypot)
+      return jsonResponse(request, { success: false, message: "Invalid submission." }, 400);
 
     if (!name || !message)
       return jsonResponse(request, { success: false, message: "Name and message are required." }, 400);
@@ -48,13 +81,28 @@ export async function onRequestPost({ request, env }) {
     if (message.length > 500)
       return jsonResponse(request, { success: false, message: "Message too long (max 500 chars)." }, 400);
 
+    // Enhanced spam detection
+    if (isSpam(name, message))
+      return jsonResponse(request, { success: false, message: "Entry contains prohibited content." }, 400);
+
+    if (isSuspiciousPattern(name, message))
+      return jsonResponse(request, { success: false, message: "Entry contains suspicious patterns." }, 400);
+
+    // Referrer check - must come from your domains
+    const referer = request.headers.get("Referer");
+    const allowedDomains = ["https://taurustech.me", "https://74f3577a.kcasko-github-io.pages.dev"];
+    if (!referer || !allowedDomains.some(domain => referer.startsWith(domain)))
+      return jsonResponse(request, { success: false, message: "Invalid request origin." }, 403);
+
     const clientIP = request.headers.get("CF-Connecting-IP") || "unknown";
+    
+    // Stricter rate limiting - 5 minutes instead of 1
     const throttleKey = `rate:${clientIP}`;
     const recent = await env.GUESTBOOK_KV.get(throttleKey);
     if (recent)
-      return jsonResponse(request, { success: false, message: "Please wait before submitting again." }, 429);
+      return jsonResponse(request, { success: false, message: "Please wait 5 minutes before submitting again." }, 429);
 
-    await env.GUESTBOOK_KV.put(throttleKey, "1", { expirationTtl: 60 });
+    await env.GUESTBOOK_KV.put(throttleKey, "1", { expirationTtl: 300 });
 
     const entryId = crypto.randomUUID();
     const timestamp = new Date().toISOString();
@@ -64,7 +112,7 @@ export async function onRequestPost({ request, env }) {
       name,
       message,
       timestamp,
-      status: "pending"
+      status: "approved"
     };
 
     await env.GUESTBOOK_KV.put(`entry:${entryId}`, JSON.stringify(entryData));
@@ -73,7 +121,7 @@ export async function onRequestPost({ request, env }) {
 
     return jsonResponse(request, {
       success: true,
-      message: "Entry submitted for moderation. Thank you!"
+      message: "Entry added successfully. Thank you!"
     });
 
   } catch (error) {
