@@ -1,0 +1,28 @@
+{
+  "name": "TaurusTech - Keith Casko's Tech Workshop",
+  "short_name": "TaurusTech",
+  "description": "Personal workshop for software engineering, systems administration, and cybersecurity projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#a56cff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/hero.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/hero.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["technology", "developer tools", "education"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/"
+}

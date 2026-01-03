@@ -30,6 +30,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error("❌ Projects Loader Error:", err);
     container.innerHTML = `<p style="color:#ff4444;">Error loading project list. Please try again later.</p>`;
+    
+    // Report error but don't break the page
+    if (window.gtag) {
+      window.gtag('event', 'exception', {
+        description: `Projects load error: ${err.message}`,
+        fatal: false
+      });
+    }
   }
 });
 
@@ -40,16 +48,16 @@ function buildControls(projects) {
   const controls = document.createElement("div");
   controls.className = "project-controls";
   controls.innerHTML = `
-    <label>Filter:</label>
-    <select id="tagFilter">
+    <label for="tagFilter">Filter:</label>
+    <select id="tagFilter" aria-label="Filter projects by category">
       <option value="All">All</option>
       ${uniqueTags.map(t => `<option value="${t}">${t}</option>`).join("")}
     </select>
 
     &nbsp;&nbsp;
 
-    <label>Sort:</label>
-    <select id="sortOrder">
+    <label for="sortOrder">Sort:</label>
+    <select id="sortOrder" aria-label="Sort projects by date or name">
       <option value="newest">Newest</option>
       <option value="oldest">Oldest</option>
       <option value="alpha">A–Z</option>
@@ -57,8 +65,8 @@ function buildControls(projects) {
 
     &nbsp;&nbsp;
 
-    <label>Search:</label>
-    <input type="text" id="projectSearch" placeholder="Type keyword..." autocomplete="off">
+    <label for="projectSearch">Search:</label>
+    <input type="text" id="projectSearch" placeholder="Type keyword..." autocomplete="off" aria-label="Search projects by keyword">
   `;
 
   const container = document.getElementById("projects-container");
@@ -140,9 +148,10 @@ function renderProjects() {
 
     const embedHTML = proj.embed
       ? `<div class="video-embed">
-          <iframe width="100%" height="405"
+          <iframe data-src="${proj.embed}" 
+            class="lazy-iframe"
+            width="100%" height="405"
             style="max-width:720px;border:none;border-radius:12px;"
-            src="${proj.embed}"
             title="${proj.title}"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
@@ -160,6 +169,11 @@ function renderProjects() {
 
     container.appendChild(div);
   });
+  
+  // Re-initialize lazy loading for new iframes
+  if (window.initLazyLoading) {
+    window.initLazyLoading();
+  }
 }
 
 // ===== Simple debounce for smoother search =====

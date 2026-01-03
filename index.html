@@ -3,8 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TaurusTech - Personal workshop for software engineering, systems administration, and cybersecurity projects">
   <title>TaurusTech - Welcome</title>
 
+  <!-- OpenGraph / Social Media Meta Tags -->
+  <meta property="og:title" content="TaurusTech - Keith Casko's Tech Workshop">
+  <meta property="og:description" content="Personal workshop for software engineering, systems administration, and cybersecurity projects">
+  <meta property="og:image" content="https://taurustech.me/images/hero.png">
+  <meta property="og:url" content="https://taurustech.me">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TaurusTech - Keith Casko's Tech Workshop">
+  <meta name="twitter:description" content="Personal workshop for software engineering, systems administration, and cybersecurity projects">
+  <meta name="twitter:image" content="https://taurustech.me/images/hero.png">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/hero.png">
+  
+  <!-- Theme colors loaded conditionally by script -->
+  <meta name="msapplication-TileColor" content="#a56cff">
+  <meta name="msapplication-navbutton-color" content="#a56cff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- CSS Custom Properties for theme consistency -->
+  <style>
+    :root {
+      --theme-color: #a56cff;
+      --theme-color-light: #8a4bcc;
+    }
+  </style>
+
+  <!-- Resource hints for performance -->
+  <link rel="preconnect" href="https://taurustech.me">
+  
   <!-- Instantly apply saved retro state -->
   <script>
     (function() {
@@ -18,8 +50,20 @@
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
   <!-- Core scripts -->
+  <script src="/js/theme-polyfill.js"></script>
   <script defer src="/js/core.js"></script>
   <script defer src="/js/typewriter.js"></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => console.log('SW registered:', registration))
+          .catch(registrationError => console.log('SW registration failed:', registrationError));
+      });
+    }
+  </script>
 </head>
 
 <body>

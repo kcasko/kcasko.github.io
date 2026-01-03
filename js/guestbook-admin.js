@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Admin Authentication
 // ==========================================================
 async function initAdminAuth() {
-  const savedKey = localStorage.getItem("tt_guestbook_key");
+  const savedKey = sessionStorage.getItem("tt_guestbook_key");
   if (savedKey) return; // already logged in
 
   const key = prompt("Enter your TaurusTech Guestbook Admin Key:");
@@ -25,7 +25,8 @@ async function initAdminAuth() {
     throw new Error("No admin key provided");
   }
 
-  localStorage.setItem("tt_guestbook_key", key);
+  // Use sessionStorage instead of localStorage for security
+  sessionStorage.setItem("tt_guestbook_key", key);
   alert("✅ Key saved for this session.");
 }
 
@@ -93,7 +94,7 @@ async function handleEntryAction(id, action) {
     const confirmAction = confirm(`Are you sure you want to ${action} this entry?`);
     if (!confirmAction) return;
 
-    const adminKey = localStorage.getItem("tt_guestbook_key");
+    const adminKey = sessionStorage.getItem("tt_guestbook_key");
     if (!adminKey) {
       alert("Missing admin key. Please reload and log in again.");
       return;

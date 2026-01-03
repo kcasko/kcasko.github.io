@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sign the TaurusTech guestbook and leave a message for Keith Casko" />
   <title>TaurusTech - Guestbook</title>
+
+  <!-- OpenGraph / Social Media Meta Tags -->
+  <meta property="og:title" content="TaurusTech Guestbook">
+  <meta property="og:description" content="Sign the guestbook and leave a message">
+  <meta property="og:image" content="https://taurustech.me/images/hero.png">
+  <meta property="og:url" content="https://taurustech.me/guestbook.html">
+  <meta property="og:type" content="website">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/hero.png">
+  
+  <!-- Theme colors loaded conditionally by script -->
+  <meta name="msapplication-TileColor" content="#a56cff">
+  <meta name="msapplication-navbutton-color" content="#a56cff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Load saved retro state before rendering -->
   <script>
@@ -18,6 +35,7 @@
   <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
 
   <!-- Modular Layout -->
+  <script src="/js/theme-polyfill.js"></script>
   <script src="/js/core.js" defer></script>
   <script src="/js/typewriter.js" defer></script>
   <script src="/js/guestbook.js" defer></script>

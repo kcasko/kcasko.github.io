@@ -4,8 +4,16 @@
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadGuestbookEntries();
-  setupGuestbookForm();
+  try {
+    loadGuestbookEntries();
+    setupGuestbookForm();
+  } catch (error) {
+    console.error('Error initializing guestbook:', error);
+    const container = document.getElementById("guestbook-entries");
+    if (container) {
+      container.innerHTML = `<p class="error-text">Unable to initialize guestbook. Please refresh the page.</p>`;
+    }
+  }
 });
 
 // ===== Base API URL (auto-detects domain) =====

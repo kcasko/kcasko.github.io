@@ -4,10 +4,36 @@
 // visits counter initialization, and footer date logic
 // ==========================================================
 
+// Global error boundary
+window.addEventListener('error', (event) => {
+  console.error('Global JavaScript Error:', {
+    message: event.message,
+    filename: event.filename,
+    lineno: event.lineno,
+    colno: event.colno,
+    error: event.error
+  });
+  
+  // Prevent error from breaking the entire page
+  return true;
+});
+
+// Unhandled promise rejection handler
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled Promise Rejection:', event.reason);
+  event.preventDefault();
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
-  await loadLayout();
-  highlightActiveLink();
-  initLastUpdatedDate();
+  try {
+    await loadLayout();
+    highlightActiveLink();
+    initLastUpdatedDate();
+    initLazyLoading();
+    initOfflineIndicator();
+  } catch (error) {
+    console.error('Error during page initialization:', error);
+  }
 });
 
 async function loadLayout() {
@@ -71,4 +97,60 @@ function initLastUpdatedDate() {
     }
   });
   observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Lazy loading for images and iframes
+window.initLazyLoading = function initLazyLoading() {
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          if (element.dataset.src) {
+            element.src = element.dataset.src;
+            element.removeAttribute('data-src');
+            element.classList.remove('lazy', 'lazy-iframe');
+            observer.unobserve(element);
+          }
+        }
+      });
+    });
+
+    // Observe all images with data-src attribute
+    document.querySelectorAll('img[data-src], iframe[data-src]').forEach(element => {
+      imageObserver.observe(element);
+    });
+  } else {
+    // Fallback for older browsers
+    document.querySelectorAll('img[data-src], iframe[data-src]').forEach(element => {
+      element.src = element.dataset.src;
+      element.removeAttribute('data-src');
+      element.classList.remove('lazy', 'lazy-iframe');
+    });
+  }
+}
+
+// Offline/Online indicator
+function initOfflineIndicator() {
+  // Create offline indicator
+  const offlineDiv = document.createElement('div');
+  offlineDiv.className = 'offline-indicator';
+  offlineDiv.innerHTML = '⚠️ You are offline. Some features may not work.';
+  document.body.appendChild(offlineDiv);
+
+  // Show/hide based on connection status
+  function updateOnlineStatus() {
+    if (navigator.onLine) {
+      offlineDiv.classList.remove('visible');
+    } else {
+      offlineDiv.classList.add('visible');
+    }
+  }
+
+  // Listen for online/offline events
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  
+  // Check initial status
+  updateOnlineStatus();
 }

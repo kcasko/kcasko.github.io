@@ -27,10 +27,18 @@ async function waitForVisitorCount() {
   };
 
   try {
+    // Create timeout controller for older browsers
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
     const res = await fetch("https://taurustech.me/api/visits", {
       credentials: "include",
-      headers: { "Accept": "application/json" }
+      headers: { "Accept": "application/json" },
+      signal: controller.signal
     });
+    
+    clearTimeout(timeoutId);
+    
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const data = await res.json();
@@ -41,6 +49,6 @@ async function waitForVisitorCount() {
     console.log(`[TaurusTech] Visits updated → ${data.visits}`);
   } catch (err) {
     console.warn(`[TaurusTech] Visit update failed: ${err.message}`);
-    el.textContent = "N/A";
+    el.textContent = cached || "N/A";
   }
 })();

@@ -3,6 +3,18 @@
    Clean Modern Version (2025, No Retro Mode)
    ========================================== */
 
+/* --- CSS Custom Properties for Theme Consistency --- */
+:root {
+  --theme-color: #a56cff;
+  --theme-color-light: #8a4bcc;
+  --theme-color-alpha: #a56cff40;
+  --construction-border: #ff8c00;
+  --text-primary: #ddd;
+  --text-secondary: #aaa;
+  --bg-primary: #000;
+  --bg-secondary: #111;
+}
+
 /* --- Basic Reset & Body --- */
 body {
   background-color: #000;
@@ -10,6 +22,16 @@ body {
   color: #ddd;
   margin: 0;
   padding: 0;
+}
+
+/* Modern mode when retro is disabled */
+.retro-off body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.retro-off .container {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #444;
 }
 
 /* --- Container --- */
@@ -136,18 +158,18 @@ main {
   line-height: 1.6;
 }
 main h2 {
-  color: #a56cff;
+  color: var(--theme-color);
   font-family: Georgia, serif;
 }
 main h3 {
-  color: #a56cff;
+  color: var(--theme-color);
   border-bottom: 1px solid #666;
   padding-bottom: 3px;
 }
 
 /* --- Under Construction Box --- */
 .construction-zone {
-  border: 1px dashed #ff8c00;
+  border: 1px dashed var(--construction-border);
   padding: 10px;
   margin: 20px 0;
   text-align: center;
@@ -163,7 +185,7 @@ main h3 {
 
 .construction-zone p {
   margin: 0;
-  color: #a56cff;
+  color: var(--theme-color);
   font-style: italic;
 }
 
@@ -174,12 +196,12 @@ main h3 {
 
 #visitorCount {
   font-family: "Courier New", monospace;
-  color: #a56cff;
+  color: var(--theme-color);
   background: transparent;
-  border: 1px solid #a56cff;
+  border: 1px solid var(--theme-color);
   padding: 2px 6px;
   display: inline-block;
-  box-shadow: 0 0 4px #a56cff;
+  box-shadow: 0 0 4px var(--theme-color);
 }
 
 /* --- Scrollbar --- */
@@ -390,4 +412,77 @@ footer .last-updated span {
 
 .connect-section li {
   margin: 5px 0;
+}
+
+/* --- Lazy Loading Styles --- */
+.lazy, .lazy-iframe {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy[src], .lazy-iframe[src] {
+  opacity: 1;
+}
+
+img.lazy {
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* --- PWA and Offline Styles --- */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ff4444;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.offline-indicator.visible {
+  transform: translateY(0);
+}
+
+/* --- Projects Page Styles --- */
+.projects-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.projects-hero h2 {
+  color: var(--theme-color);
+  text-shadow: 0 0 8px var(--theme-color);
+}
+
+.projects-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.projects-loading {
+  text-align: center;
+  color: #aaa;
+}
+
+/* --- Retro Mode Toggle --- */
+.retro-off .construction-zone img,
+.retro-off #logo {
+  filter: grayscale(100%);
+  opacity: 0.8;
 }
