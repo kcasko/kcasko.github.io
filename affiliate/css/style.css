@@ -238,3 +238,66 @@ body.budget-tech {
     inset 0 0 0 1px rgba(77, 163, 255, 0.2),
     0 10px 24px rgba(0, 0, 0, 0.35);
 }
+
+/* ======================
+   Responsive Design
+====================== */
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 3rem 1rem 1.5rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .controls button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 2rem 0.75rem 1rem;
+  }
+
+  .site-header h1 {
+    font-size: 2rem;
+  }
+
+  .controls {
+    gap: 0.75rem;
+  }
+
+  .controls button {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .card {
+    min-height: auto;
+    padding: 1.25rem;
+  }
+
+  .shipping-note {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+}
