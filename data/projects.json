@@ -4,7 +4,7 @@
   "description": "A custom Linux-based diagnostic environment built to explore system inspection, troubleshooting workflows, and tooling integration. Currently on the backburner, with a stable and functional build documented.",
   "tags": ["linux", "systems", "diagnostics", "homelab"],
   "links": [
-    { "label": "View Project Page »", "url": "/projects/diagnostix.html" }
+    { "label": "View Project Page »", "url": "/portfolio/diagnostix.html" }
   ],
   "embed": "https://www.youtube.com/embed/6sHkzuFEcMA"
 },
