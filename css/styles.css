@@ -133,10 +133,40 @@ nav a.active {
   color: #ffff66;
 }
 
+/* Navigation spacing for specific links */
+.nav-spacer {
+  margin-top: 20px;
+}
+
 @media (max-width: 600px) {
+  /* Container adjustments for mobile */
+  .container {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  /* Header and logo mobile responsive */
+  #logo {
+    max-height: 140px;
+    max-width: 90%;
+  }
+  
+  .tagline {
+    font-size: 0.75em;
+    white-space: normal;
+    overflow: visible;
+    text-align: center;
+    padding: 0 5px;
+  }
+  
+  /* Navigation mobile layout */
   nav li {
     display: block;
     margin: 8px 0;
+  }
+  
+  nav li.nav-spacer {
+    margin-top: 16px;
   }
 }
 
